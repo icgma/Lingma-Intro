@@ -401,12 +401,36 @@ pip install pandas</code>
               <p style="font-size:0.8rem">Python 语法高亮、智能提示、Linting、调试支持</p>
             </div>
             <div class="feature-card" style="padding:1rem">
-              <h4 style="font-size:0.95rem">🎨 主题扩展</h4>
-              <p style="font-size:0.8rem">One Dark Pro、Material Theme 等个性化主题</p>
+              <h4 style="font-size:0.95rem">🌐 Chinese Language Pack</h4>
+              <p style="font-size:0.8rem">中文语言包，将界面翻译为简体中文</p>
+            </div>
+            <div class="feature-card" style="padding:1rem">
+              <h4 style="font-size:0.95rem">📓 Jupyter</h4>
+              <p style="font-size:0.8rem">在 IDE 中运行 Jupyter Notebook（.ipynb）</p>
+            </div>
+            <div class="feature-card" style="padding:1rem">
+              <h4 style="font-size:0.95rem">🖥️ Live Server</h4>
+              <p style="font-size:0.8rem">一键启动本地服务器预览 HTML 页面，自动刷新</p>
+            </div>
+            <div class="feature-card" style="padding:1rem">
+              <h4 style="font-size:0.95rem">🔎 GitLens</h4>
+              <p style="font-size:0.8rem">增强 Git 功能：逐行追溯修改记录、可视化分支图</p>
+            </div>
+            <div class="feature-card" style="padding:1rem">
+              <h4 style="font-size:0.95rem">🚨 Error Lens</h4>
+              <p style="font-size:0.8rem">将错误和警告直接高亮显示在代码行内</p>
             </div>
             <div class="feature-card" style="padding:1rem">
               <h4 style="font-size:0.95rem">📐 Prettier</h4>
               <p style="font-size:0.8rem">自动格式化代码，保持风格统一</p>
+            </div>
+            <div class="feature-card" style="padding:1rem">
+              <h4 style="font-size:0.95rem">🎨 主题扩展</h4>
+              <p style="font-size:0.8rem">One Dark Pro、Material Theme 等个性化主题</p>
+            </div>
+            <div class="feature-card" style="padding:1rem">
+              <h4 style="font-size:0.95rem">📝 Markdown All in One</h4>
+              <p style="font-size:0.8rem">Markdown 预览、快捷键、目录生成</p>
             </div>
           </div>
         </div>
@@ -418,6 +442,47 @@ pip install pandas</code>
           <p>Lingma IDE 独有的 AI 入口。可打开聊天面板（<kbd>Ctrl+L</kbd>）、行内对话（<kbd>Ctrl+I</kbd>）、Quest 模式（<kbd>Ctrl+E</kbd>）。详见下方 <a href="#ai">AI 智能编码</a> 章节。</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 底部面板详解 ===== -->
+<section class="section section-alt" id="bottom-panel">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">底部面板详解</h2>
+    <p class="section-subtitle">Lingma IDE 底部面板包含多个标签页，用于输出信息、运行命令和排查问题。按 <kbd>Ctrl+`</kbd> 打开/关闭。</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💻</div>
+        <h3>TERMINAL（终端）</h3>
+        <p>内置命令行终端，默认使用 PowerShell（Windows）。可以直接运行 <code>python main.py</code>、<code>pip install</code> 等命令，无需切换窗口。支持多终端同时运行。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚠️</div>
+        <h3>PROBLEMS（问题）</h3>
+        <p>实时显示代码中的错误和警告。安装 Python 扩展后，语法错误、未定义变量等问题会自动出现在这里，点击可跳转到对应代码行。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📤</div>
+        <h3>OUTPUT（输出）</h3>
+        <p>显示扩展和工具的输出日志。例如 Python 语言服务器的启动信息、Git 操作的详细日志等。排查扩展问题时很有用。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🐛</div>
+        <h3>DEBUG CONSOLE（调试控制台）</h3>
+        <p>调试程序时使用的交互式控制台。可以在断点暂停时输入表达式查看值、执行临时代码。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>PORTS（端口）</h3>
+        <p>管理端口转发，在远程开发或运行 Web 服务器时使用。例如运行 Flask/Django 应用后，可在此查看和转发端口。</p>
+      </div>
+    </div>
+
+    <div class="info-box tip" style="margin-top:2rem">
+      <span class="info-box-icon">💡</span>
+      <p>初学者最常用的是 <strong>TERMINAL</strong> 和 <strong>PROBLEMS</strong> 两个标签页。TERMINAL 用于运行代码，PROBLEMS 帮你快速定位错误。</p>
     </div>
   </div>
 </section>
