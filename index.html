@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lingma IDE 入门指南 — 通义灵码</title>
+  <meta name="description" content="面向本科生的 Lingma IDE（通义灵码）使用入门指南，涵盖下载安装、界面认识、Python 编程、AI 智能编码等核心功能。">
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🧠</text></svg>">
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="nav-brand">
+      <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="url(#nb)"/><path d="M8 10l4-3 4 3M8 18l4 3 4-3M7 14h14" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="nb" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+      Lingma IDE 指南
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="菜单">☰</button>
+    <ul class="nav-links">
+      <li><a href="#about">简介</a></li>
+      <li><a href="#install">安装</a></li>
+      <li><a href="#interface">界面</a></li>
+      <li><a href="#sidebar">侧边栏</a></li>
+      <li><a href="#coding">编程</a></li>
+      <li><a href="#ai">AI编码</a></li>
+      <li><a href="#shortcuts">快捷键</a></li>
+      <li><a href="#resources">资源</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>免费使用 · 个人版</div>
+    <h1>欢迎使用 <span class="gradient-text">Lingma IDE</span></h1>
+    <p class="tagline">阿里云通义灵码出品的 AI 原生集成开发环境，内置智能编码助手，让编程变得更简单、更高效。</p>
+    <div class="hero-actions">
+      <a href="https://lingma.aliyun.com/download" target="_blank" class="btn btn-primary">⬇ 下载 Lingma IDE</a>
+      <a href="#about" class="btn btn-outline">📖 开始学习</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 什么是 Lingma IDE ===== -->
+<section class="section" id="about">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">什么是 Lingma IDE？</h2>
+    <p class="section-subtitle">一款基于 VS Code 开源版本打造的 AI 原生集成开发环境，由阿里云通义灵码团队开发。</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>AI 原生集成</h3>
+        <p>开箱即用的智能编码助手，无需额外安装插件。支持代码补全、智能问答、多文件修改等能力。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌍</div>
+        <h3>30+ 编程语言</h3>
+        <p>支持 Python、Java、JavaScript、C/C++、Go、PHP、Ruby、Rust、TypeScript 等 30 多种主流语言。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <h3>丰富的扩展生态</h3>
+        <p>兼容 VS Code 扩展市场，可安装语言支持、调试器、主题等上千个扩展插件。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🆓</div>
+        <h3>个人版完全免费</h3>
+        <p>个人开发者免费使用全部核心功能，包括 AI 编码助手，只需注册阿里云账号即可。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>编程智能体</h3>
+        <p>具备自主规划和工具使用能力，可根据自然语言描述端到端完成编码任务。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>安全可靠</h3>
+        <p>代码数据安全保障，通过联邦学习机制确保代码不泄露。国产自主可控。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 下载与安装 ===== -->
+<section class="section section-alt" id="install">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">下载与安装</h2>
+    <p class="section-subtitle">三步即可开始使用 Lingma IDE。</p>
+
+    <div class="sys-req-grid">
+      <div class="sys-req-card">
+        <div class="os-icon">🪟</div>
+        <h4>Windows</h4>
+        <p>Windows 10/11（x64 / arm64）</p>
+      </div>
+      <div class="sys-req-card">
+        <div class="os-icon">🍎</div>
+        <h4>macOS</h4>
+        <p>macOS 11.0 或更高版本</p>
+      </div>
+    </div>
+
+    <div class="illustration-panel">
+      <img src="images/install_steps.png" alt="Lingma IDE 安装步骤示意图" loading="lazy">
+      <figcaption>安装流程：下载 → 安装 → 启动</figcaption>
+    </div>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>访问官网下载</h4>
+          <p>打开 <a href="https://lingma.aliyun.com/download" target="_blank">lingma.aliyun.com/download</a>，根据你的操作系统选择对应版本下载安装包。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>运行安装程序</h4>
+          <p>双击下载的安装包，按照向导一步步完成安装。安装过程与普通软件相同。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>启动并登录</h4>
+          <p>首次启动后，使用阿里云账号登录即可激活 AI 编码助手功能。如果没有账号，可以免费注册。</p>
+          <div class="info-box tip">
+            <span class="info-box-icon">💡</span>
+            <p>也可以不登录直接使用基本编辑功能，但登录后才能使用 AI 代码补全等高级功能。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 界面认识 ===== -->
+<section class="section" id="interface">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">认识界面</h2>
+    <p class="section-subtitle">Lingma IDE 的界面与 VS Code 非常相似，主要由以下 7 个区域组成。</p>
+
+    <!-- SVG IDE Layout Diagram — matches real Lingma IDE (light theme) -->
+    <svg class="ide-diagram" viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#6366f1"/><stop offset="100%" stop-color="#06b6d4"/></linearGradient>
+        <filter id="glow"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <!-- Window Frame -->
+      <rect width="800" height="520" rx="10" fill="#f5f5f5" stroke="#c0c0c0" stroke-width="1.5"/>
+      <!-- Title Bar -->
+      <rect x="0" y="0" width="800" height="32" rx="10" fill="#e8e8e8"/>
+      <rect x="0" y="10" width="800" height="22" fill="#e8e8e8"/>
+      <text x="245" y="22" fill="#666" font-size="11" font-family="Inter,sans-serif">File  Edit  Selection  View  Go  Run  Terminal  Help</text>
+      <text x="490" y="22" fill="#7c5cfc" font-size="11" font-weight="600" font-family="Inter,sans-serif">Editor</text>
+      <text x="530" y="22" fill="#999" font-size="11" font-family="Inter,sans-serif">Quest</text>
+      <!-- Window buttons -->
+      <rect x="740" y="10" width="12" height="12" rx="1" fill="none" stroke="#999" stroke-width="1"/>
+      <rect x="756" y="10" width="12" height="12" rx="1" fill="none" stroke="#999" stroke-width="1"/>
+      <line x1="772" y1="10" x2="784" y2="22" stroke="#999" stroke-width="1"/>
+      <line x1="784" y1="10" x2="772" y2="22" stroke="#999" stroke-width="1"/>
+      <!-- Activity Bar (left icons) -->
+      <rect x="0" y="32" width="40" height="458" fill="#f0f0f0" stroke="#ddd" stroke-width="0.5"/>
+      <!-- Activity bar icons -->
+      <text x="20" y="58" text-anchor="middle" font-size="16">📁</text>
+      <rect x="0" y="42" width="2" height="24" fill="#7c5cfc"/>
+      <text x="20" y="88" text-anchor="middle" font-size="16">🔍</text>
+      <text x="20" y="118" text-anchor="middle" font-size="14">⑂</text>
+      <text x="20" y="148" text-anchor="middle" font-size="16">🌐</text>
+      <text x="20" y="178" text-anchor="middle" font-size="14">🔌</text>
+      <text x="20" y="208" text-anchor="middle" font-size="14">📋</text>
+      <text x="20" y="238" text-anchor="middle" font-size="14">🤖</text>
+      <!-- Sidebar - Explorer -->
+      <rect x="40" y="32" width="190" height="458" fill="#f8f8f8" stroke="#e0e0e0" stroke-width="0.5"/>
+      <text x="52" y="52" fill="#333" font-size="10" font-weight="700" font-family="Inter,sans-serif">EXPLORER</text>
+      <text x="52" y="70" fill="#666" font-size="9" font-weight="600" font-family="Inter,sans-serif">▸ NO FOLDER OPENED</text>
+      <text x="52" y="90" fill="#888" font-size="9" font-family="Inter,sans-serif">You have not yet opened a folder.</text>
+      <rect x="62" y="100" width="140" height="26" rx="4" fill="#7c5cfc"/>
+      <text x="132" y="117" text-anchor="middle" fill="#fff" font-size="10" font-weight="600" font-family="Inter,sans-serif">Open Folder</text>
+      <text x="52" y="148" fill="#888" font-size="9" font-family="Inter,sans-serif">You can clone a repository.</text>
+      <rect x="62" y="156" width="140" height="26" rx="4" fill="#7c5cfc"/>
+      <text x="132" y="173" text-anchor="middle" fill="#fff" font-size="10" font-weight="600" font-family="Inter,sans-serif">Clone Repository</text>
+      <!-- Bottom sidebar sections -->
+      <text x="52" y="440" fill="#888" font-size="9" font-family="Inter,sans-serif">▸ OUTLINE</text>
+      <text x="52" y="458" fill="#888" font-size="9" font-family="Inter,sans-serif">▸ TIMELINE</text>
+      <!-- Main content - Welcome Page -->
+      <rect x="230" y="32" width="570" height="428" fill="#ffffff"/>
+      <!-- Lingma Logo + Welcome -->
+      <text x="515" y="80" text-anchor="middle" fill="#7c5cfc" font-size="28" font-weight="700" font-family="Inter,sans-serif">✦ Lingma</text>
+      <!-- Welcome buttons -->
+      <rect x="370" y="100" width="120" height="30" rx="5" fill="#f0f0f0" stroke="#ddd" stroke-width="1"/>
+      <text x="430" y="119" text-anchor="middle" fill="#555" font-size="10" font-family="Inter,sans-serif">⊙ Open project</text>
+      <rect x="500" y="100" width="120" height="30" rx="5" fill="#f0f0f0" stroke="#ddd" stroke-width="1"/>
+      <text x="560" y="119" text-anchor="middle" fill="#555" font-size="10" font-family="Inter,sans-serif">⎘ Clone repo</text>
+      <rect x="630" y="100" width="140" height="30" rx="5" fill="#f0f0f0" stroke="#ddd" stroke-width="1"/>
+      <text x="700" y="119" text-anchor="middle" fill="#555" font-size="10" font-family="Inter,sans-serif">⚡ Connect via SSH</text>
+      <!-- Recent projects -->
+      <text x="380" y="160" fill="#999" font-size="10" font-family="Inter,sans-serif">Recent</text>
+      <text x="390" y="182" fill="#333" font-size="11" font-weight="500" font-family="Inter,sans-serif">Lingma-case</text>
+      <text x="390" y="202" fill="#333" font-size="11" font-weight="500" font-family="Inter,sans-serif">MCP</text>
+      <text x="390" y="222" fill="#333" font-size="11" font-weight="500" font-family="Inter,sans-serif">基础编程</text>
+      <text x="390" y="242" fill="#333" font-size="11" font-weight="500" font-family="Inter,sans-serif">Data_Journalism</text>
+      <text x="390" y="264" fill="#7c5cfc" font-size="10" font-family="Inter,sans-serif">More</text>
+      <!-- Chat shortcuts -->
+      <text x="390" y="300" fill="#888" font-size="10" font-family="Inter,sans-serif">Open Chat Panel</text>
+      <text x="700" y="300" text-anchor="end" fill="#aaa" font-size="9" font-family="JetBrains Mono,monospace">Ctrl + L</text>
+      <text x="390" y="322" fill="#888" font-size="10" font-family="Inter,sans-serif">Toggle Quest Mode</text>
+      <text x="700" y="322" text-anchor="end" fill="#aaa" font-size="9" font-family="JetBrains Mono,monospace">Ctrl + E</text>
+      <text x="390" y="344" fill="#888" font-size="10" font-family="Inter,sans-serif">Open Inline Chat</text>
+      <text x="700" y="344" text-anchor="end" fill="#aaa" font-size="9" font-family="JetBrains Mono,monospace">Ctrl + I</text>
+      <!-- Bottom Panel - Terminal tabs -->
+      <rect x="230" y="460" width="570" height="30" fill="#f0f0f0" stroke="#ddd" stroke-width="0.5"/>
+      <text x="255" y="479" fill="#888" font-size="9" font-family="Inter,sans-serif">PROBLEMS</text>
+      <text x="318" y="479" fill="#888" font-size="9" font-family="Inter,sans-serif">OUTPUT</text>
+      <text x="370" y="479" fill="#888" font-size="9" font-family="Inter,sans-serif">DEBUG CONSOLE</text>
+      <rect x="454" y="466" width="64" height="18" rx="0" fill="#fff"/>
+      <text x="460" y="479" fill="#333" font-size="9" font-weight="600" font-family="Inter,sans-serif">TERMINAL</text>
+      <text x="531" y="479" fill="#888" font-size="9" font-family="Inter,sans-serif">PORTS</text>
+      <!-- Status Bar -->
+      <rect x="0" y="490" width="800" height="30" rx="0" fill="#7c5cfc"/>
+      <rect x="0" y="490" width="800" height="20" fill="#7c5cfc"/>
+      <rect x="0" y="510" width="800" height="10" rx="10" fill="#7c5cfc"/>
+      <text x="15" y="505" fill="#fff" font-size="10" font-family="Inter,sans-serif">⊘ 0  ⚠ 0</text>
+      <text x="720" y="505" fill="#fff" font-size="10" font-family="Inter,sans-serif" text-anchor="end">⊳ NEXT</text>
+      <!-- Labels -->
+      <g filter="url(#glow)">
+        <text x="400" y="14" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700" font-family="Inter,sans-serif">① 菜单栏 / 工具栏</text>
+        <text x="20" y="280" text-anchor="middle" fill="#818cf8" font-size="9" font-weight="700" font-family="Inter,sans-serif">②</text>
+        <text x="20" y="294" text-anchor="middle" fill="#818cf8" font-size="8" font-family="Inter,sans-serif">活动栏</text>
+        <text x="135" y="260" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700" font-family="Inter,sans-serif">③ 侧边栏</text>
+        <text x="515" y="380" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700" font-family="Inter,sans-serif">④ 编辑器 / 欢迎页</text>
+        <text x="515" y="450" text-anchor="middle" fill="#818cf8" font-size="10" font-weight="700" font-family="Inter,sans-serif">⑤ 底部面板（终端 / 输出 / 调试控制台）</text>
+        <text x="400" y="506" text-anchor="middle" fill="#fff" font-size="10" font-weight="700" font-family="Inter,sans-serif">⑥ 状态栏</text>
+      </g>
+    </svg>
+
+    <div class="features-grid" style="margin-top:2rem">
+      <div class="feature-card"><div class="feature-icon">1️⃣</div><h3>菜单栏 / 工具栏</h3><p>位于顶部，包含 File、Edit、View、Run、Terminal、Help 等菜单，以及 Editor / Quest 模式切换。</p></div>
+      <div class="feature-card"><div class="feature-icon">2️⃣</div><h3>活动栏</h3><p>最左侧的图标栏，点击图标可切换侧边栏内容。从上到下依次为：资源管理器、搜索、Git、远程连接、扩展、Lingma AI 等。</p></div>
+      <div class="feature-card"><div class="feature-icon">3️⃣</div><h3>侧边栏</h3><p>根据活动栏选中的图标展示对应内容。默认为资源管理器，可浏览项目文件和文件夹。</p></div>
+      <div class="feature-card"><div class="feature-icon">4️⃣</div><h3>编辑器 / 欢迎页</h3><p>首次启动显示 Lingma 欢迎页，支持打开项目、Clone 仓库、SSH 连接。打开文件后显示代码编辑器。</p></div>
+      <div class="feature-card"><div class="feature-icon">5️⃣</div><h3>底部面板</h3><p>包含终端（TERMINAL）、输出（OUTPUT）、问题（PROBLEMS）、调试控制台等标签页。快捷键 <kbd>Ctrl+`</kbd> 打开。</p></div>
+      <div class="feature-card"><div class="feature-icon">6️⃣</div><h3>状态栏</h3><p>最底部紫色条，显示错误/警告数量、Git 分支、编程语言、编码格式等实时信息。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 开始编程 ===== -->
+<section class="section section-alt" id="coding">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">开始你的第一个项目</h2>
+    <p class="section-subtitle">跟着以下步骤，从零开始创建一个 Python 项目。</p>
+
+    <h3 style="margin-bottom:1.5rem;color:var(--color-text-bright)">📂 第一步：打开工作区</h3>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>打开一个文件夹</h4>
+          <p>菜单栏选择 <strong>文件 → 打开文件夹...</strong>，选择或新建一个文件夹作为你的项目工作区。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>信任工作区</h4>
+          <p>首次打开文件夹时会弹出信任对话框，选择 <strong>"是，我信任此作者"</strong>。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">📝 第二步：创建 Python 文件</h3>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>新建文件</h4>
+          <p>在左侧文件浏览器中点击 <strong>"新建文件..."</strong> 按钮，输入文件名 <code>main.py</code>，按回车确认。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>编写代码</h4>
+          <p>在编辑器中输入以下代码：</p>
+          <div class="code-block" data-lang="python">
+<code><span class="kw">def</span> <span class="fn">hello</span>(name):
+    <span class="kw">print</span>(<span class="str">f"你好, {name}! 欢迎学习编程 🎉"</span>)
+
+<span class="fn">hello</span>(<span class="str">"同学"</span>)</code>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">💻 第三步：安装 Python 扩展</h3>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h4>打开扩展视图</h4>
+          <p>点击左侧活动栏的 <strong>扩展图标</strong>（方块形状），或按 <kbd>Ctrl+Shift+X</kbd>。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">6</div>
+        <div class="step-content">
+          <h4>搜索并安装</h4>
+          <p>在搜索栏输入 <code>python</code>，找到 <strong>Python Extension Pack</strong>，点击 <strong>安装</strong>。安装后即获得语法高亮、智能提示等功能。</p>
+          <div class="info-box warning">
+            <span class="info-box-icon">⚠️</span>
+            <p>安装扩展后，需要<strong>登录千问灵码账号</strong>才能使用 AI 代码补全功能。部分插件如果无法在 Lingma IDE 内安装，可前往 <a href="https://marketplace.visualstudio.com/vscode" target="_blank">VS Code 扩展市场</a> 下载安装。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">🖥️ 终端与命令面板</h3>
+    <div class="two-col" style="margin-top:1rem">
+      <div>
+        <h4>使用终端</h4>
+        <p style="color:var(--color-text-muted);margin-bottom:1rem">终端让你直接在 IDE 里运行命令，无需切换窗口。</p>
+        <p style="color:var(--color-text-muted)">打开方式：菜单 <strong>查看 → 终端</strong>，或按 <kbd>Ctrl+`</kbd></p>
+        <div class="code-block" data-lang="terminal">
+<code><span class="cm"># 运行 Python 脚本</span>
+python main.py
+
+<span class="cm"># 安装第三方库</span>
+pip install pandas</code>
+        </div>
+      </div>
+      <div>
+        <h4>命令面板</h4>
+        <p style="color:var(--color-text-muted);margin-bottom:1rem">命令面板是 Lingma IDE 的"万能搜索框"，几乎所有功能都能通过它找到。</p>
+        <p style="color:var(--color-text-muted)">打开方式：<kbd>Ctrl+Shift+P</kbd></p>
+        <div class="info-box note">
+          <span class="info-box-icon">📝</span>
+          <p>输入 <code>></code> 后搜索命令，移除 <code>></code> 则搜索文件。支持模糊匹配，如输入 "odks" 能找到 "Open Default Keyboard Shortcuts"。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 活动栏详解 ===== -->
+<section class="section" id="sidebar">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">活动栏详解</h2>
+    <p class="section-subtitle">活动栏是 Lingma IDE 左侧的图标列，每个图标对应一个独立的工作面板。以下逐一介绍。</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">📁</div>
+        <div class="step-content">
+          <h4>资源管理器（Explorer）</h4>
+          <p>显示当前打开的文件夹中所有文件和子目录，是最常用的视图。支持新建文件/文件夹、重命名、拖拽移动等操作。底部还有 <strong>OUTLINE</strong>（代码大纲）和 <strong>TIMELINE</strong>（文件修改历史）面板。</p>
+          <div class="info-box tip">
+            <span class="info-box-icon">💡</span>
+            <p>首次启动 Lingma IDE 时，侧边栏会提示 "No Folder Opened"，点击 <strong>Open Folder</strong> 按钮选择你的项目文件夹即可。</p>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🔍</div>
+        <div class="step-content">
+          <h4>搜索（Search）</h4>
+          <p>在整个项目中快速搜索文本或正则表达式。支持 <strong>替换</strong> 功能，可一键批量替换所有匹配项。快捷键 <kbd>Ctrl+Shift+F</kbd>。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">⑂</div>
+        <div class="step-content">
+          <h4>源代码管理（Source Control / Git）</h4>
+          <p>内置 Git 版本控制。可以直观地查看文件变更（增删改）、暂存更改、编写 Commit 信息并提交、拉取/推送代码、查看分支和历史等。即使从未使用过 Git，Lingma IDE 也提供了友好的图形界面。</p>
+          <div class="info-box note">
+            <span class="info-box-icon">📝</span>
+            <p>点击 <strong>"初始化存储库"</strong> 即可为当前文件夹创建 Git 仓库。文件名旁的 <strong>U</strong>（未跟踪）、<strong>M</strong>（已修改）标记帮你了解版本状态。</p>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🌐</div>
+        <div class="step-content">
+          <h4>远程连接（Remote）</h4>
+          <p>支持通过 SSH 连接到远程服务器进行开发。也可用于连接 Docker 容器或 WSL（Windows 子系统）。在欢迎页可通过 <strong>"Connect via SSH"</strong> 快速开始远程开发。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🧩</div>
+        <div class="step-content">
+          <h4>扩展（Extensions）</h4>
+          <p>安装和管理插件。在搜索框输入关键词即可找到所需扩展。常用扩展推荐：</p>
+          <div class="features-grid" style="margin-top:1rem">
+            <div class="feature-card" style="padding:1rem">
+              <h4 style="font-size:0.95rem">🐍 Python Extension Pack</h4>
+              <p style="font-size:0.8rem">Python 语法高亮、智能提示、Linting、调试支持</p>
+            </div>
+            <div class="feature-card" style="padding:1rem">
+              <h4 style="font-size:0.95rem">🎨 主题扩展</h4>
+              <p style="font-size:0.8rem">One Dark Pro、Material Theme 等个性化主题</p>
+            </div>
+            <div class="feature-card" style="padding:1rem">
+              <h4 style="font-size:0.95rem">📐 Prettier</h4>
+              <p style="font-size:0.8rem">自动格式化代码，保持风格统一</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🤖</div>
+        <div class="step-content">
+          <h4>通义灵码 AI 助手</h4>
+          <p>Lingma IDE 独有的 AI 入口。可打开聊天面板（<kbd>Ctrl+L</kbd>）、行内对话（<kbd>Ctrl+I</kbd>）、Quest 模式（<kbd>Ctrl+E</kbd>）。详见下方 <a href="#ai">AI 智能编码</a> 章节。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI 智能编码 ===== -->
+<section class="section section-alt" id="ai">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">AI 智能编码</h2>
+    <p class="section-subtitle">Lingma IDE 最强大的特色功能——让 AI 成为你的编程搭档。</p>
+
+    <div class="ai-showcase">
+      <div class="ai-tag">✨ 核心功能</div>
+      <h3 style="margin-bottom:1rem">代码智能补全</h3>
+      <p style="color:var(--color-text-muted);margin-bottom:1.5rem">当你开始输入代码时，通义灵码会基于上下文自动生成代码建议。按 <kbd>Tab</kbd> 键即可接受补全。</p>
+      <div class="code-block" data-lang="python">
+<code><span class="cm"># 输入函数头，AI 自动补全函数体 👇</span>
+<span class="kw">def</span> <span class="fn">add</span>(a, b):
+    <span class="cm" style="opacity:0.5">return a + b    ← AI 建议（按 Tab 接受）</span>
+
+<span class="cm"># 输入注释描述需求，AI 生成完整代码 👇</span>
+<span class="cm"># 读取 CSV 文件并计算平均值</span>
+<span class="cm" style="opacity:0.5">import pandas as pd             ← AI 自动生成</span>
+<span class="cm" style="opacity:0.5">df = pd.read_csv("data.csv")    ← AI 自动生成</span>
+<span class="cm" style="opacity:0.5">avg = df["score"].mean()        ← AI 自动生成</span></code>
+      </div>
+    </div>
+
+    <div class="features-grid" style="margin-top:2rem">
+      <div class="ai-showcase" style="padding:1.5rem">
+        <div class="ai-tag">🔧 智能修复</div>
+        <h4 style="margin-bottom:0.5rem">自动发现并修复错误</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">当代码出现未定义变量、语法错误等问题时，灵码会自动检测并提供一键修复方案。</p>
+      </div>
+      <div class="ai-showcase" style="padding:1.5rem">
+        <div class="ai-tag">💬 智能问答</div>
+        <h4 style="margin-bottom:0.5rem">用自然语言提问</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">在右侧 AI 面板中，可以直接用中文提问："如何用 Python 读取 Excel 文件？"，灵码会给出代码示例。</p>
+      </div>
+      <div class="ai-showcase" style="padding:1.5rem">
+        <div class="ai-tag">📝 多文件修改</div>
+        <h4 style="margin-bottom:0.5rem">跨文件批量编辑</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">描述修改需求后，灵码可以同时修改多个文件，并逐一展示变更供你审查确认。</p>
+      </div>
+      <div class="ai-showcase" style="padding:1.5rem">
+        <div class="ai-tag">🤖 编程智能体</div>
+        <h4 style="margin-bottom:0.5rem">端到端完成任务</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">描述编码任务后，智能体自主拆解步骤、检索代码、编辑文件、运行终端命令，一气呵成。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 快捷键 ===== -->
+<section class="section" id="shortcuts">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">常用快捷键速查</h2>
+    <p class="section-subtitle">熟练使用快捷键能大幅提升你的编程效率。以下是最常用的快捷键（Windows）。</p>
+
+    <table class="shortcuts-table">
+      <thead><tr><th>功能</th><th>快捷键</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>打开命令面板</td><td><kbd>Ctrl+Shift+P</kbd></td><td>万能搜索框，可搜索所有命令</td></tr>
+        <tr><td>快速打开文件</td><td><kbd>Ctrl+P</kbd></td><td>按文件名搜索并打开文件</td></tr>
+        <tr><td>打开终端</td><td><kbd>Ctrl+`</kbd></td><td>显示/隐藏底部终端面板</td></tr>
+        <tr><td>保存文件</td><td><kbd>Ctrl+S</kbd></td><td>保存当前文件</td></tr>
+        <tr><td>撤销</td><td><kbd>Ctrl+Z</kbd></td><td>撤销上一步操作</td></tr>
+        <tr><td>查找</td><td><kbd>Ctrl+F</kbd></td><td>在当前文件中搜索</td></tr>
+        <tr><td>全局查找</td><td><kbd>Ctrl+Shift+F</kbd></td><td>在整个项目中搜索</td></tr>
+        <tr><td>设置断点</td><td><kbd>F9</kbd></td><td>在当前行设置/取消断点</td></tr>
+        <tr><td>开始调试</td><td><kbd>F5</kbd></td><td>启动调试或继续执行</td></tr>
+        <tr><td>运行代码</td><td><kbd>Ctrl+F5</kbd></td><td>不调试直接运行</td></tr>
+        <tr><td>AI 代码补全</td><td><kbd>Tab</kbd></td><td>接受 AI 生成的代码建议</td></tr>
+        <tr><td>注释/取消注释</td><td><kbd>Ctrl+/</kbd></td><td>切换当前行的注释状态</td></tr>
+        <tr><td>键盘快捷键设置</td><td><kbd>Ctrl+K → Ctrl+S</kbd></td><td>打开完整的快捷键列表</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box note" style="margin-top:2rem">
+      <span class="info-box-icon">📝</span>
+      <p>macOS 用户请将 <kbd>Ctrl</kbd> 替换为 <kbd>⌘ Cmd</kbd>。完整快捷键列表可通过 <kbd>Ctrl+K → Ctrl+S</kbd> 查看。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 设置中文界面 ===== -->
+<section class="section section-alt" id="chinese">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">设置中文界面</h2>
+    <p class="section-subtitle">如果你的 Lingma IDE 界面默认是英文，以下步骤可以快速切换为中文。</p>
+    <div class="step-list">
+      <div class="step-item"><div class="step-number">1</div><div class="step-content"><h4>打开命令面板</h4><p>按 <kbd>Ctrl+Shift+P</kbd>。</p></div></div>
+      <div class="step-item"><div class="step-number">2</div><div class="step-content"><h4>输入语言命令</h4><p>输入 <code>Configure Display Language</code>，按回车。</p></div></div>
+      <div class="step-item"><div class="step-number">3</div><div class="step-content"><h4>选择中文</h4><p>在列表中选择 <strong>中文（简体）（zh-cn）</strong>，然后点击 <strong>重启</strong>。</p></div></div>
+      <div class="step-item"><div class="step-number">4</div><div class="step-content"><h4>完成 🎉</h4><p>重启后界面即显示为中文。</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 延伸资源 ===== -->
+<section class="section" id="resources">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">延伸学习资源</h2>
+    <p class="section-subtitle">想深入了解？这些官方资源能帮助你进一步掌握 Lingma IDE。</p>
+    <div class="resource-grid">
+      <a href="https://lingma.aliyun.com/" target="_blank" class="resource-card">
+        <div class="res-icon">🏠</div>
+        <div class="res-text"><h4>通义灵码官网</h4><p>产品介绍、最新动态、下载入口</p></div>
+      </a>
+      <a href="https://help.aliyun.com/zh/lingma/getting-started/lingma-ide-get-started" target="_blank" class="resource-card">
+        <div class="res-icon">📖</div>
+        <div class="res-text"><h4>官方快速入门文档</h4><p>详细的图文教程和操作指南</p></div>
+      </a>
+      <a href="https://help.aliyun.com/zh/lingma/user-guide/" target="_blank" class="resource-card">
+        <div class="res-icon">🤖</div>
+        <div class="res-text"><h4>智能编码操作指南</h4><p>AI 功能的详细使用说明</p></div>
+      </a>
+      <a href="https://marketplace.visualstudio.com/vscode" target="_blank" class="resource-card">
+        <div class="res-icon">🧩</div>
+        <div class="res-text"><h4>VS Code 扩展市场</h4><p>下载更多语言支持和工具插件</p></div>
+      </a>
+      <a href="https://help.aliyun.com/zh/lingma/user-guide/installation-and-login-guide/" target="_blank" class="resource-card">
+        <div class="res-icon">🔑</div>
+        <div class="res-text"><h4>安装与登录指南</h4><p>账号注册与登录的详细步骤</p></div>
+      </a>
+      <a href="https://help.aliyun.com/zh/lingma/support/faq" target="_blank" class="resource-card">
+        <div class="res-icon">❓</div>
+        <div class="res-text"><h4>常见问题 FAQ</h4><p>遇到问题？这里有答案</p></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p>本指南为基础编程课程教学资源，内容参考 <a href="https://help.aliyun.com/zh/lingma/" target="_blank">阿里云通义灵码官方文档</a>。</p>
+  <p style="margin-top:0.5rem;opacity:0.6">© 2026 基础编程课程组</p>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script>
+// Navbar scroll effect
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Scroll-triggered fade-in animations
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+
+// Floating code particles
+const particleContainer = document.getElementById('particles');
+const codeSnippets = ['def', 'print()', 'for i in', 'import', 'if __name__', 'return', 'class', 'while', 'try:', 'except:', 'lambda', '# TODO', 'async', 'await', 'yield', 'with open'];
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement('span');
+  p.className = 'particle';
+  p.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 20 + 's';
+  p.style.animationDuration = (15 + Math.random() * 15) + 's';
+  particleContainer.appendChild(p);
+}
+
+// Active nav link highlight (optional scroll-spy)
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 100;
+  sections.forEach(sec => {
+    const top = sec.offsetTop, h = sec.offsetHeight, id = sec.getAttribute('id');
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (link) link.classList.toggle('active', scrollY >= top && scrollY < top + h);
+  });
+});
+</script>
+
+</body>
+</html>
