@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技能 / 智能体 / 指令详解 — Lingma IDE 指南</title>
+  <meta name="description" content="详细介绍 Lingma IDE 中的技能（Skills）、编程智能体（Agents）和自定义指令的概念与使用方法。">
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🧩</text></svg>">
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="url(#nb)"/><path d="M8 10l4-3 4 3M8 18l4 3 4-3M7 14h14" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="nb" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+      Lingma IDE 指南
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="菜单">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">← 返回首页</a></li>
+      <li><a href="#agents">智能体</a></li>
+      <li><a href="#skills">技能</a></li>
+      <li><a href="#create-skill">创建技能</a></li>
+      <li><a href="#commands">指令</a></li>
+      <li><a href="mcp.html">MCP 服务</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top" style="min-height:50vh">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>高级功能</div>
+    <h1>技能 / 智能体 / <span class="gradient-text">指令</span></h1>
+    <p class="tagline">将专业知识打包成可复用能力，让 AI 编码助手更懂你的项目和工作流。</p>
+    <div class="hero-actions">
+      <a href="#agents" class="btn btn-primary">📖 开始阅读</a>
+      <a href="index.html#settings" class="btn btn-outline">← 返回设置</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 编程智能体 ===== -->
+<section class="section" id="agents">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">编程智能体（Agent）</h2>
+    <p class="section-subtitle">通义灵码的编程智能体可以自主规划、自主执行，端到端地完成编码任务。</p>
+
+    <div class="ai-showcase" style="margin-bottom:2rem">
+      <div class="ai-tag">🤖 核心概念</div>
+      <h3 style="margin-bottom:1rem">什么是编程智能体？</h3>
+      <p style="color:var(--color-text-muted)">编程智能体不同于简单的代码补全或问答。它具备<strong>自主决策能力</strong>——你只需用自然语言描述任务目标，智能体会自动拆解为具体步骤，检索代码、编辑文件、运行命令，一步步完成整个任务。</p>
+    </div>
+
+    <h3 style="margin-bottom:1.5rem;color:var(--color-text-bright)">🔧 智能体核心能力</h3>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <h3>任务拆解</h3>
+        <p>将复杂需求自动拆分为可执行的小步骤，按顺序逐步完成。支持中途调整和回滚。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>环境感知</h3>
+        <p>自动感知项目的框架、技术栈、文件结构和代码上下文，无需你手动提供背景信息。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3>多文件编辑</h3>
+        <p>可以同时修改多个代码文件，进行工程级别的变更。每次修改都会展示给你确认。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💻</div>
+        <h3>终端命令</h3>
+        <p>自主编写和运行终端命令，如安装依赖、运行测试、启动服务等。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔌</div>
+        <h3>MCP 工具调用</h3>
+        <p>智能体可以调用你配置的 MCP 工具，访问外部资源。<a href="mcp.html">了解 MCP →</a></p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>长期记忆</h3>
+        <p>记住你的编码偏好和工作习惯，每次对话的经验会积累到后续交互中。</p>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">🚀 如何使用智能体</h3>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>打开 Quest 模式</h4>
+          <p>按 <kbd>Ctrl+E</kbd> 进入 Quest 模式，这是智能体的主要工作界面。也可以在对话框左下角切换到智能体模式。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>描述你的任务</h4>
+          <p>用自然语言描述你想要完成的任务。描述越清晰，智能体的执行越精准。</p>
+          <div class="code-block" data-lang="任务描述示例">
+<code><span class="cm"># ✅ 好的描述</span>
+帮我创建一个 Flask Web 应用，包含用户注册和登录功能，
+使用 SQLite 数据库，密码用 bcrypt 加密。
+
+<span class="cm"># ❌ 过于模糊的描述</span>
+帮我写一个网站。</code>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>审查并确认</h4>
+          <p>智能体会展示它的执行计划和每一步的代码变更。你可以：</p>
+          <ul style="color:var(--color-text-muted);padding-left:1.2rem;margin-top:0.5rem">
+            <li><strong>接受</strong>：确认变更并继续下一步</li>
+            <li><strong>修改</strong>：提出调整意见让智能体重新执行</li>
+            <li><strong>回滚</strong>：撤销当前步骤的变更</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 技能 ===== -->
+<section class="section section-alt" id="skills">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">技能（Skills）</h2>
+    <p class="section-subtitle">技能是将专业知识打包成可复用功能的机制。每个技能让 AI 具备特定领域的专业能力。</p>
+
+    <div class="two-col" style="margin-top:2rem">
+      <div>
+        <h4 style="margin-bottom:1rem">📦 什么是技能？</h4>
+        <p style="color:var(--color-text-muted)">你可以把技能想象成给 AI 装上的"专业插件"。每个技能包含一组指令和参考资料，告诉 AI 如何处理某类特定任务。</p>
+        <p style="color:var(--color-text-muted);margin-top:1rem">例如，一个"代码审查"技能会告诉 AI 具体的审查标准、关注点和输出格式。</p>
+      </div>
+      <div>
+        <h4 style="margin-bottom:1rem">📁 技能的结构</h4>
+        <div class="code-block" data-lang="技能文件夹结构">
+<code>my-skill/
+├── <span class="fn">SKILL.md</span>       <span class="cm"># 必需：主指令文件</span>
+├── scripts/       <span class="cm"># 可选：辅助脚本</span>
+├── examples/      <span class="cm"># 可选：参考示例</span>
+└── resources/     <span class="cm"># 可选：其他资源</span></code>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">⚡ 技能的两种触发方式</h3>
+    <div class="features-grid">
+      <div class="ai-showcase" style="padding:1.5rem;flex:1">
+        <div class="ai-tag">🤖 自动触发</div>
+        <h4 style="margin:0.5rem 0">AI 智能识别</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">直接描述需求，AI 会根据技能的描述自动判断是否调用。</p>
+        <div class="code-block" data-lang="示例" style="margin-top:1rem">
+<code><span class="cm"># 你说：</span>
+帮我分析这个日志文件里的错误
+
+<span class="cm"># AI 自动调用 log-analyzer 技能</span></code>
+        </div>
+      </div>
+      <div class="ai-showcase" style="padding:1.5rem;flex:1">
+        <div class="ai-tag">⌨️ 手动触发</div>
+        <h4 style="margin:0.5rem 0">斜杠命令</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">输入 <code>/技能名</code> 手动触发特定技能。</p>
+        <div class="code-block" data-lang="示例" style="margin-top:1rem">
+<code><span class="cm"># 手动调用技能：</span>
+/code-review
+/log-analyzer
+/create-test</code>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">📍 技能的存放位置</h3>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">👤</div>
+        <h3>用户级技能</h3>
+        <p>存放在 <code>~/.lingma/skills/</code> 目录下。适用于你个人所有项目的通用技能。</p>
+        <div class="code-block" data-lang="路径" style="margin-top:0.5rem">
+<code>~/.lingma/skills/my-skill/SKILL.md</code>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📂</div>
+        <h3>项目级技能</h3>
+        <p>存放在项目根目录的 <code>.lingma/skills/</code> 下。适用于团队共享的项目专属技能。</p>
+        <div class="code-block" data-lang="路径" style="margin-top:0.5rem">
+<code>.lingma/skills/my-skill/SKILL.md</code>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 创建技能 ===== -->
+<section class="section" id="create-skill">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">创建自定义技能</h2>
+    <p class="section-subtitle">两种方式创建技能：使用内置助手自动生成，或手动编写 SKILL.md。</p>
+
+    <h3 style="margin-bottom:1.5rem;color:var(--color-text-bright)">方式一：自动创建（推荐）</h3>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>使用 create-skill 命令</h4>
+          <p>在 AI 对话框中输入：</p>
+          <div class="code-block" data-lang="对话框">
+<code>/create-skill 创建一个代码审查技能，
+检查变量命名规范、注释完整性和异常处理</code>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>交互式引导</h4>
+          <p>AI 会引导你完善技能的描述、触发条件和执行逻辑，自动生成 <code>SKILL.md</code> 模板。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>保存并重启</h4>
+          <p>技能文件保存到对应目录后，重启 IDE 即可生效。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">方式二：手动编写 SKILL.md</h3>
+    <div class="code-block" data-lang="SKILL.md 模板">
+<code>---
+name: code-review
+description: 对代码进行专业审查，检查规范性和潜在问题
+---
+
+# 代码审查技能
+
+## 审查标准
+当用户请求代码审查时，请按以下标准检查：
+
+### 1. 命名规范
+- 变量名使用 snake_case（Python）
+- 函数名应具有描述性
+- 避免单字母变量名（除循环变量外）
+
+### 2. 代码质量
+- 函数长度不超过 50 行
+- 必须有 docstring 说明
+- 异常处理不能使用裸露的 except
+
+### 3. 输出格式
+对每个问题，给出：
+- 📍 位置（文件名 + 行号）
+- ❌ 问题描述
+- ✅ 建议修改</code>
+    </div>
+
+    <div class="info-box tip" style="margin-top:1.5rem">
+      <span class="info-box-icon">💡</span>
+      <p>SKILL.md 使用 YAML 前置元数据（frontmatter）定义 <code>name</code> 和 <code>description</code>，下方用 Markdown 编写具体指令，越详细越好。</p>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">📌 实用技能示例</h3>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🧪</div>
+        <h3>自动生成测试</h3>
+        <p>分析函数签名和逻辑，自动生成 pytest 测试用例，覆盖边界条件。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <h3>API 文档生成</h3>
+        <p>读取 Python 模块结构，生成 Sphinx/MkDocs 风格的 API 文档。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>代码重构</h3>
+        <p>按照 SOLID 原则和设计模式，对选中的代码块提出重构建议。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>数据分析模板</h3>
+        <p>用 pandas + matplotlib 快速生成数据探索性分析(EDA) 脚本。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>安全审计</h3>
+        <p>检查代码中的常见安全漏洞，如 SQL 注入、XSS、硬编码密钥。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3>Git 提交规范</h3>
+        <p>根据代码变更自动生成 Conventional Commits 规范的提交信息。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 指令 ===== -->
+<section class="section section-alt" id="commands">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">自定义指令</h2>
+    <p class="section-subtitle">指令是比技能更轻量的自定义方式，用于为 AI 设定特定的行为规范。</p>
+
+    <div class="two-col" style="margin-top:2rem">
+      <div>
+        <h4 style="margin-bottom:1rem">📋 技能 vs 指令 — 什么区别？</h4>
+        <table class="shortcuts-table">
+          <thead><tr><th>维度</th><th>技能 (Skills)</th><th>指令 (Instructions)</th></tr></thead>
+          <tbody>
+            <tr><td>复杂度</td><td>复杂，有文件结构</td><td>轻量，一段文字</td></tr>
+            <tr><td>触发方式</td><td>自动 / 手动 (/命令)</td><td>始终生效</td></tr>
+            <tr><td>适用场景</td><td>特定任务流程</td><td>通用行为规范</td></tr>
+            <tr><td>存储位置</td><td>skills/ 文件夹</td><td>设置面板</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h4 style="margin-bottom:1rem">💡 指令示例</h4>
+        <div class="code-block" data-lang="指令">
+<code><span class="cm"># 示例指令（在设置面板「规则」中配置）：</span>
+
+<span class="kw">1.</span> 所有 Python 代码遵循 PEP 8 风格
+<span class="kw">2.</span> 变量名和函数名用英文，注释用中文
+<span class="kw">3.</span> 每个函数必须包含 docstring
+<span class="kw">4.</span> 优先使用 f-string 而非 format()
+<span class="kw">5.</span> 避免使用 global 变量
+<span class="kw">6.</span> 错误处理使用具体异常类型</code>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">📂 项目专属规则文件</h3>
+    <p style="color:var(--color-text-muted);margin-bottom:1.5rem">除了在设置面板配置指令，还可以在项目根目录创建 <code>.lingma/rules/</code> 文件夹，放入 Markdown 文件作为项目专属规则。规则支持以下生效模式：</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>模型自动决策</h3>
+        <p>AI 根据当前对话内容，自动判断是否引用该规则。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📌</div>
+        <h3>始终生效</h3>
+        <p>无论何种对话场景，该规则始终被包含在 AI 的上下文中。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📁</div>
+        <h3>按文件匹配</h3>
+        <p>只在编辑特定类型文件（如 <code>*.py</code>）时生效。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p><a href="index.html">← 返回 Lingma IDE 入门指南</a> | <a href="mcp.html">MCP 服务详解 →</a></p>
+  <p style="margin-top:0.5rem;opacity:0.6">© 2026 基础编程课程组</p>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+const particleContainer = document.getElementById('particles');
+const codeSnippets = ['SKILL.md', 'Agent', '/review', 'Quest', 'rules/', '.lingma/', 'create', 'invoke', 'memory', 'plan', 'execute'];
+for (let i = 0; i < 15; i++) {
+  const p = document.createElement('span');
+  p.className = 'particle';
+  p.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 20 + 's';
+  p.style.animationDuration = (15 + Math.random() * 15) + 's';
+  particleContainer.appendChild(p);
+}
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 100;
+  sections.forEach(sec => {
+    const top = sec.offsetTop, h = sec.offsetHeight, id = sec.getAttribute('id');
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (link) link.classList.toggle('active', scrollY >= top && scrollY < top + h);
+  });
+});
+</script>
+
+</body>
+</html>

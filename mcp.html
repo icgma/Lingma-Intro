@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCP 服务详解 — Lingma IDE 指南</title>
+  <meta name="description" content="详细介绍 Lingma IDE 中 MCP（模型上下文协议）服务的概念、配置方法和实际应用场景。">
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔌</text></svg>">
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="url(#nb)"/><path d="M8 10l4-3 4 3M8 18l4 3 4-3M7 14h14" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="nb" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+      Lingma IDE 指南
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="菜单">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">← 返回首页</a></li>
+      <li><a href="#what-is-mcp">什么是MCP</a></li>
+      <li><a href="#how-to-add">添加服务</a></li>
+      <li><a href="#mcp-plaza">MCP广场</a></li>
+      <li><a href="#use-cases">应用场景</a></li>
+      <li><a href="skills.html">技能/智能体</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="top" style="min-height:50vh">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>高级功能</div>
+    <h1>MCP 服务 <span class="gradient-text">详解</span></h1>
+    <p class="tagline">Model Context Protocol — 让 AI 编码助手连接外部工具和数据源，无限扩展能力边界。</p>
+    <div class="hero-actions">
+      <a href="#what-is-mcp" class="btn btn-primary">📖 开始阅读</a>
+      <a href="index.html#settings" class="btn btn-outline">← 返回设置</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 什么是 MCP ===== -->
+<section class="section" id="what-is-mcp">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">什么是 MCP？</h2>
+    <p class="section-subtitle">MCP（Model Context Protocol，模型上下文协议）是一种开放标准协议，为大语言模型提供了标准化的外部工具和上下文集成方式。</p>
+
+    <div class="two-col" style="margin-top:2rem">
+      <div>
+        <h4 style="margin-bottom:1rem">🤔 通俗理解</h4>
+        <p style="color:var(--color-text-muted)">你可以把 MCP 想象成给 AI 助手安装的"App Store"。每个 MCP 服务就像一个 App，让 AI 具备新的能力——比如查数据库、读文档、调 API 等。</p>
+        <div class="info-box tip" style="margin-top:1.5rem">
+          <span class="info-box-icon">💡</span>
+          <p>没有 MCP 时，AI 只能读你当前的代码文件。有了 MCP，AI 可以主动去获取外部信息，大大提升工作效率。</p>
+        </div>
+      </div>
+      <div>
+        <h4 style="margin-bottom:1rem">🏗️ 技术架构</h4>
+        <p style="color:var(--color-text-muted)">MCP 服务支持两种通信模式：</p>
+        <div class="step-list" style="margin-top:1rem">
+          <div class="step-item">
+            <div class="step-number" style="font-size:0.8rem">1</div>
+            <div class="step-content">
+              <h4>STDIO 模式</h4>
+              <p>通过标准输入输出流通信，<strong>服务在本地运行</strong>。适合轻量级工具，启动快。</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number" style="font-size:0.8rem">2</div>
+            <div class="step-content">
+              <h4>SSE 模式</h4>
+              <p>采用服务器发送事件协议通信，<strong>服务可在远端或本地</strong>。适合复杂服务或共享服务。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-grid" style="margin-top:2.5rem">
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>开放标准</h3>
+        <p>MCP 不是灵码独有的协议，是行业通用标准。学会了在灵码中使用，到其他支持 MCP 的工具中也同样适用。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <h3>即插即用</h3>
+        <p>大多数 MCP 服务开箱即用，只需在设置中添加即可。无需编写代码或修改配置文件。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>智能体自主调用</h3>
+        <p>编程智能体会根据你的需求描述，自主判断是否需要调用 MCP 工具，并在执行前征求你的确认。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 添加 MCP 服务 ===== -->
+<section class="section section-alt" id="how-to-add">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">如何添加 MCP 服务</h2>
+    <p class="section-subtitle">两种方式：从 MCP 广场一键安装，或手动配置服务。</p>
+
+    <h3 style="margin-bottom:1.5rem;color:var(--color-text-bright)">方式一：从 MCP 广场安装（推荐）</h3>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>打开设置</h4>
+          <p>点击左下角齿轮图标，或通过命令面板搜索 <code>Lingma: Settings</code>。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>进入 MCP 服务页面</h4>
+          <p>在左侧导航中点击 <strong>MCP 服务</strong>，切换到 <strong>MCP 广场</strong> 标签页。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>搜索并安装</h4>
+          <p>浏览或搜索所需的 MCP 服务，点击 <strong>安装</strong> 按钮。安装完成后切换到"我的服务"页面，图标显示为 <strong style="color:#10b981">绿色</strong> 即表示连接成功。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">方式二：手动添加</h3>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>点击「+」按钮</h4>
+          <p>在 MCP 服务页面右上角，点击 <strong>+</strong> 号。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>选择添加方式</h4>
+          <p>可以选择 <strong>手工添加</strong> 或 <strong>导入 JSON 配置</strong>。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>填写服务信息</h4>
+          <p>根据服务类型填写：</p>
+          <div class="two-col" style="margin-top:1rem">
+            <div class="code-block" data-lang="STDIO 模式">
+<code>{
+  "name": "my-tool",
+  "command": "npx",
+  "args": ["-y", "@example/mcp-server"],
+  "env": {
+    "API_KEY": "your-key"
+  }
+}</code>
+            </div>
+            <div class="code-block" data-lang="SSE 模式">
+<code>{
+  "name": "remote-tool",
+  "url": "https://mcp.example.com/sse",
+  "headers": {
+    "Authorization": "Bearer xxx"
+  }
+}</code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MCP 广场 ===== -->
+<section class="section" id="mcp-plaza">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">MCP 广场</h2>
+    <p class="section-subtitle">通义灵码集成了魔搭社区 MCP 市场，提供 3800+ 个 MCP 服务，覆盖十大热门领域。</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🛠️</div>
+        <h3>开发者工具</h3>
+        <p>GitHub、GitLab、Jira、Linear 等项目管理和代码托管工具集成。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📁</div>
+        <h3>文件系统</h3>
+        <p>本地文件/目录的增删改查操作，支持批量处理。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗄️</div>
+        <h3>数据库</h3>
+        <p>MySQL、PostgreSQL、MongoDB 等数据库连接，自动生成查询和 DAO 代码。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>搜索引擎</h3>
+        <p>让 AI 联网搜索最新信息，获取实时的技术文档和教程。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📐</div>
+        <h3>设计工具</h3>
+        <p>MasterGo、Figma 等设计稿读取，自动将设计稿转换为前端代码。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>DevOps</h3>
+        <p>云效 DevOps 集成，实现从工作项到代码生成、提交的自动化流程。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>数据分析</h3>
+        <p>连接数据分析平台，AI 自动进行数据查询、统计和可视化。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <h3>地图服务</h3>
+        <p>地图 API 集成，适合需要地理信息处理的应用开发。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏋️</div>
+        <h3>算法练习</h3>
+        <p>LeetCode MCP 服务，在 IDE 内随机获取算法题并辅助解题。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 应用场景 ===== -->
+<section class="section section-alt" id="use-cases">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">实际应用场景</h2>
+    <p class="section-subtitle">以下是几个常见的 MCP + 智能体协作示例，展示 MCP 如何提升开发效率。</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">📝</div>
+        <div class="step-content">
+          <h4>场景一：根据在线文档生成代码</h4>
+          <p>配置 <strong>Fetch</strong> MCP 服务后，可以告诉 AI："参考这个 API 文档链接，帮我写一个 Python 客户端"。AI 会自动读取网页内容并生成对应代码。</p>
+          <div class="code-block" data-lang="对话示例">
+<code><span class="cm"># 你对 AI 说：</span>
+参考 https://api.example.com/docs ，
+帮我写一个获取用户列表的 Python 函数。
+
+<span class="cm"># AI 会：</span>
+<span class="cm"># 1. 调用 Fetch MCP 读取网页内容</span>
+<span class="cm"># 2. 分析 API 文档结构</span>
+<span class="cm"># 3. 生成完整的 Python 代码</span></code>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🗄️</div>
+        <div class="step-content">
+          <h4>场景二：数据库辅助开发</h4>
+          <p>配置数据库 MCP 后，AI 可以直接查看数据库结构，自动生成 SQL 查询语句和数据访问代码。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🎨</div>
+        <div class="step-content">
+          <h4>场景三：设计稿转代码</h4>
+          <p>配置 MasterGo 或 Figma MCP 后，AI 读取设计稿中的组件信息，自动生成对应的 HTML/CSS 代码，大幅减少前端还原工作量。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🏋️</div>
+        <div class="step-content">
+          <h4>场景四：在 IDE 内刷算法题</h4>
+          <p>配置 LeetCode MCP 服务后，可以对 AI 说："随机给我一道中等难度的数组题"。AI 调用 MCP 获取题目，你在 IDE 里写代码，AI 辅助调试。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box warning" style="margin-top:2rem">
+      <span class="info-box-icon">⚠️</span>
+      <p><strong>注意</strong>：部分 MCP 服务需要配置 API Key 或其他凭证。首次使用时请仔细阅读服务提供方的说明文档。智能体在调用 MCP 工具前会先征求你的确认。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <p><a href="index.html">← 返回 Lingma IDE 入门指南</a> | <a href="skills.html">技能/智能体/指令详解 →</a></p>
+  <p style="margin-top:0.5rem;opacity:0.6">© 2026 基础编程课程组</p>
+</footer>
+
+<!-- ===== Scripts ===== -->
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+const particleContainer = document.getElementById('particles');
+const codeSnippets = ['MCP', 'STDIO', 'SSE', 'fetch()', 'Tool', 'Agent', 'Context', 'Protocol', 'API', 'JSON', 'connect', 'invoke'];
+for (let i = 0; i < 15; i++) {
+  const p = document.createElement('span');
+  p.className = 'particle';
+  p.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 20 + 's';
+  p.style.animationDuration = (15 + Math.random() * 15) + 's';
+  particleContainer.appendChild(p);
+}
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 100;
+  sections.forEach(sec => {
+    const top = sec.offsetTop, h = sec.offsetHeight, id = sec.getAttribute('id');
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (link) link.classList.toggle('active', scrollY >= top && scrollY < top + h);
+  });
+});
+</script>
+
+</body>
+</html>
