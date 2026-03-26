@@ -255,98 +255,158 @@
 <section class="section section-alt" id="coding">
   <div class="section-inner fade-in">
     <h2 class="section-title">开始你的第一个项目</h2>
-    <p class="section-subtitle">跟着以下步骤，从零开始创建一个 Python 项目。</p>
+    <p class="section-subtitle">跟着以下步骤，从零开始创建并运行一个 Python 项目。每一步都有详细说明，完全不需要编程基础。</p>
 
     <h3 style="margin-bottom:1.5rem;color:var(--color-text-bright)">📂 第一步：打开工作区</h3>
+    <p style="color:var(--color-text-muted);margin-bottom:1rem">"工作区"就是一个文件夹，你的所有代码文件都放在里面。先在电脑上创建一个文件夹（比如 <code>D:\我的编程项目\</code>），然后告诉 Lingma IDE 打开它。</p>
     <div class="step-list">
       <div class="step-item">
         <div class="step-number">1</div>
         <div class="step-content">
           <h4>打开一个文件夹</h4>
-          <p>菜单栏选择 <strong>文件 → 打开文件夹...</strong>，选择或新建一个文件夹作为你的项目工作区。</p>
+          <p>菜单栏选择 <strong>文件 → 打开文件夹...</strong>（英文界面是 <strong>File → Open Folder...</strong>），选择或新建一个文件夹作为你的项目工作区。</p>
+          <div class="info-box tip">
+            <span class="info-box-icon">💡</span>
+            <p><strong>建议</strong>：每个课程作业创建一个独立文件夹，如 <code>week01</code>、<code>week02</code>，方便管理。避免放在桌面或下载文件夹——文件一多就乱了。</p>
+          </div>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">2</div>
         <div class="step-content">
           <h4>信任工作区</h4>
-          <p>首次打开文件夹时会弹出信任对话框，选择 <strong>"是，我信任此作者"</strong>。</p>
+          <p>首次打开文件夹时会弹出安全提示对话框，选择 <strong>"是，我信任此作者"</strong>。这是正常的安全检查，不用担心。</p>
         </div>
       </div>
     </div>
 
-    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">📝 第二步：创建 Python 文件</h3>
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">📝 第二步：创建并编写 Python 文件</h3>
     <div class="step-list">
       <div class="step-item">
         <div class="step-number">3</div>
         <div class="step-content">
           <h4>新建文件</h4>
-          <p>在左侧文件浏览器中点击 <strong>"新建文件..."</strong> 按钮，输入文件名 <code>main.py</code>，按回车确认。</p>
+          <p>在左侧文件浏览器中，把鼠标悬停在文件夹名称上方，点击出现的 <strong>"新建文件"</strong> 按钮（📄 图标），输入文件名 <code>main.py</code>，按回车确认。</p>
+          <div class="info-box note">
+            <span class="info-box-icon">📝</span>
+            <p><strong>.py</strong> 是 Python 文件的后缀名。就像 <code>.docx</code> 是 Word 文档、<code>.pptx</code> 是 PPT 一样，<code>.py</code> 告诉电脑"这个文件里写的是 Python 代码"。</p>
+          </div>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">4</div>
         <div class="step-content">
-          <h4>编写代码</h4>
-          <p>在编辑器中输入以下代码：</p>
+          <h4>编写你的第一个程序</h4>
+          <p>在编辑器中输入以下代码（你可以直接复制粘贴）：</p>
           <div class="code-block" data-lang="python">
-<code><span class="kw">def</span> <span class="fn">hello</span>(name):
+<code><span class="cm"># 这是你的第一个 Python 程序</span>
+<span class="cm"># 它会向你打招呼 👋</span>
+
+<span class="kw">def</span> <span class="fn">hello</span>(name):
+    <span class="str">"""向指定的人打招呼。"""</span>
     <span class="kw">print</span>(<span class="str">f"你好, {name}! 欢迎学习编程 🎉"</span>)
 
+<span class="cm"># 调用函数——把"同学"替换成你的名字试试</span>
 <span class="fn">hello</span>(<span class="str">"同学"</span>)</code>
           </div>
+          <p style="color:var(--color-text-muted);margin-top:0.5rem"><strong>代码解释</strong>：<code>def hello(name):</code> 定义了一个叫 <code>hello</code> 的函数，<code>print()</code> 让程序在屏幕上显示文字，<code>f"...{name}..."</code> 是 Python 的字符串格式化（会把变量的值填进去）。</p>
         </div>
       </div>
     </div>
 
-    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">💻 第三步：安装 Python 扩展</h3>
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">▶️ 第三步：运行代码</h3>
     <div class="step-list">
       <div class="step-item">
         <div class="step-number">5</div>
         <div class="step-content">
-          <h4>打开扩展视图</h4>
-          <p>点击左侧活动栏的 <strong>扩展图标</strong>（方块形状），或按 <kbd>Ctrl+Shift+X</kbd>。</p>
+          <h4>打开终端</h4>
+          <p>按 <kbd>Ctrl+`</kbd>（Ctrl 键 + 键盘左上角的反引号键，在 ESC 键下方）打开底部终端面板。</p>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">6</div>
         <div class="step-content">
-          <h4>搜索并安装</h4>
-          <p>在搜索栏输入 <code>python</code>，找到 <strong>Python Extension Pack</strong>，点击 <strong>安装</strong>。安装后即获得语法高亮、智能提示等功能。</p>
-          <div class="info-box warning">
-            <span class="info-box-icon">⚠️</span>
-            <p>安装扩展后，需要<strong>登录千问灵码账号</strong>才能使用 AI 代码补全功能。部分插件如果无法在 Lingma IDE 内安装，可前往 <a href="https://marketplace.visualstudio.com/vscode" target="_blank">VS Code 扩展市场</a> 下载安装。</p>
+          <h4>运行程序</h4>
+          <p>在终端中输入以下命令，然后按回车：</p>
+          <div class="code-block" data-lang="terminal">
+<code>python main.py</code>
+          </div>
+          <p style="color:var(--color-text-muted);margin-top:0.5rem"><strong>预期输出</strong>：</p>
+          <div class="code-block" data-lang="输出结果">
+<code>你好, 同学! 欢迎学习编程 🎉</code>
+          </div>
+          <div class="info-box tip" style="margin-top:1rem">
+            <span class="info-box-icon">💡</span>
+            <p>如果看到上面的输出，恭喜你！🎉 你已经成功运行了人生中（可能是）第一个 Python 程序。如果报错了，检查代码是否有拼写错误，或者让 AI 助手帮你修：按 <kbd>Ctrl+L</kbd> 打开聊天面板，把错误信息粘贴过去问 AI。</p>
           </div>
         </div>
       </div>
     </div>
 
-    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">🖥️ 终端与命令面板</h3>
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">💻 第四步：安装 Python 扩展</h3>
+    <p style="color:var(--color-text-muted);margin-bottom:1rem">Python 扩展就像给 Lingma IDE 装了一个"Python 专家包"——安装后 IDE 能识别 Python 语法、提供智能提示、帮你发现错误。</p>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">7</div>
+        <div class="step-content">
+          <h4>打开扩展市场</h4>
+          <p>点击左侧活动栏的 <strong>扩展图标</strong>（方块拼图形状 🧩），或按 <kbd>Ctrl+Shift+X</kbd>。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">8</div>
+        <div class="step-content">
+          <h4>搜索并安装</h4>
+          <p>在搜索栏输入 <code>python</code>，找到 <strong>Python Extension Pack</strong>（作者 Microsoft），点击 <strong>安装</strong>（Install）。安装后即获得：语法高亮（代码变彩色）、智能提示、错误检测等功能。</p>
+          <div class="info-box warning">
+            <span class="info-box-icon">⚠️</span>
+            <p>安装扩展后，需要<strong>登录阿里云账号</strong>才能使用 AI 代码补全功能。点击左下角头像按钮登录。如果没有账号，可以用手机号免费注册。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">🖥️ 必须掌握的两个工具：终端 & 命令面板</h3>
+    <p style="color:var(--color-text-muted);margin-bottom:1rem">学编程的过程中，这两个工具你会频繁使用——务必记住它们的快捷键。</p>
     <div class="two-col" style="margin-top:1rem">
       <div>
-        <h4>使用终端</h4>
-        <p style="color:var(--color-text-muted);margin-bottom:1rem">终端让你直接在 IDE 里运行命令，无需切换窗口。</p>
-        <p style="color:var(--color-text-muted)">打开方式：菜单 <strong>查看 → 终端</strong>，或按 <kbd>Ctrl+`</kbd></p>
-        <div class="code-block" data-lang="terminal">
+        <h4>💻 终端（Terminal）</h4>
+        <p style="color:var(--color-text-muted);margin-bottom:0.5rem"><strong>是什么</strong>：IDE 内置的命令行窗口，可以直接输入和执行命令。</p>
+        <p style="color:var(--color-text-muted);margin-bottom:0.5rem"><strong>打开方式</strong>：菜单 <strong>查看 → 终端</strong>，或按 <kbd>Ctrl+`</kbd></p>
+        <p style="color:var(--color-text-muted);margin-bottom:0.5rem"><strong>你会用来做什么</strong>：</p>
+        <div class="code-block" data-lang="常用终端命令">
 <code><span class="cm"># 运行 Python 脚本</span>
 python main.py
 
 <span class="cm"># 安装第三方库</span>
-pip install pandas</code>
+pip install pandas
+pip install matplotlib
+pip install jieba
+
+<span class="cm"># 查看已安装的库</span>
+pip list</code>
         </div>
       </div>
       <div>
-        <h4>命令面板</h4>
-        <p style="color:var(--color-text-muted);margin-bottom:1rem">命令面板是 Lingma IDE 的"万能搜索框"，几乎所有功能都能通过它找到。</p>
-        <p style="color:var(--color-text-muted)">打开方式：<kbd>Ctrl+Shift+P</kbd></p>
-        <div class="info-box note">
+        <h4>🔍 命令面板（Command Palette）</h4>
+        <p style="color:var(--color-text-muted);margin-bottom:0.5rem"><strong>是什么</strong>：Lingma IDE 的"万能搜索框"——几乎所有功能都能通过它找到并执行。</p>
+        <p style="color:var(--color-text-muted);margin-bottom:0.5rem"><strong>打开方式</strong>：<kbd>Ctrl+Shift+P</kbd></p>
+        <p style="color:var(--color-text-muted);margin-bottom:0.5rem"><strong>你会用来做什么</strong>：</p>
+        <ul style="color:var(--color-text-muted);font-size:0.9rem;padding-left:1.2rem">
+          <li>切换中文界面：搜索 <code>display language</code></li>
+          <li>更换主题颜色：搜索 <code>color theme</code></li>
+          <li>格式化代码：搜索 <code>format document</code></li>
+          <li>打开设置：搜索 <code>settings</code></li>
+        </ul>
+        <div class="info-box note" style="margin-top:1rem">
           <span class="info-box-icon">📝</span>
-          <p>输入 <code>></code> 后搜索命令，移除 <code>></code> 则搜索文件。支持模糊匹配，如输入 "odks" 能找到 "Open Default Keyboard Shortcuts"。</p>
+          <p>输入 <code>></code> 后搜索命令，移除 <code>></code> 则搜索文件名。支持模糊匹配。</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- ===== 活动栏详解 ===== -->
 <section class="section" id="sidebar">
@@ -609,46 +669,120 @@ pip install pandas</code>
 <section class="section section-alt" id="ai">
   <div class="section-inner fade-in">
     <h2 class="section-title">AI 智能编码</h2>
-    <p class="section-subtitle">Lingma IDE 最强大的特色功能——让 AI 成为你的编程搭档。</p>
+    <p class="section-subtitle">Lingma IDE 最强大的特色功能——让 AI 成为你的编程搭档。以下是 5 种使用 AI 的方式，从最简单到最强大。</p>
 
+    <h3 style="margin-bottom:1.5rem;color:var(--color-text-bright)">① 代码智能补全（写代码时自动出现）</h3>
     <div class="ai-showcase">
-      <div class="ai-tag">✨ 核心功能</div>
-      <h3 style="margin-bottom:1rem">代码智能补全</h3>
-      <p style="color:var(--color-text-muted);margin-bottom:1.5rem">当你开始输入代码时，通义灵码会基于上下文自动生成代码建议。按 <kbd>Tab</kbd> 键即可接受补全。</p>
+      <div class="ai-tag">✨ 基础功能 · 无需任何操作</div>
+      <p style="color:var(--color-text-muted);margin-bottom:1rem">当你开始输入代码时，AI 会以<strong>灰色半透明文字</strong>显示它猜测的下一段代码。你只需要按 <kbd>Tab</kbd> 键就能接受建议，按 <kbd>Esc</kbd> 拒绝。</p>
       <div class="code-block" data-lang="python">
-<code><span class="cm"># 输入函数头，AI 自动补全函数体 👇</span>
+<code><span class="cm"># 💡 方式一：输入函数头，AI 自动补全函数体</span>
 <span class="kw">def</span> <span class="fn">add</span>(a, b):
-    <span class="cm" style="opacity:0.5">return a + b    ← AI 建议（按 Tab 接受）</span>
+    <span class="cm" style="opacity:0.5">return a + b    ← 灰色文字就是 AI 的建议，按 Tab 接受</span>
 
-<span class="cm"># 输入注释描述需求，AI 生成完整代码 👇</span>
+<span class="cm"># 💡 方式二：写一行中文注释描述你想做什么，AI 自动写代码</span>
 <span class="cm"># 读取 CSV 文件并计算平均值</span>
-<span class="cm" style="opacity:0.5">import pandas as pd             ← AI 自动生成</span>
-<span class="cm" style="opacity:0.5">df = pd.read_csv("data.csv")    ← AI 自动生成</span>
-<span class="cm" style="opacity:0.5">avg = df["score"].mean()        ← AI 自动生成</span></code>
+<span class="cm" style="opacity:0.5">import pandas as pd             ← AI 自动生成（按 Tab 接受）</span>
+<span class="cm" style="opacity:0.5">df = pd.read_csv("data.csv")    ← AI 继续生成</span>
+<span class="cm" style="opacity:0.5">avg = df["score"].mean()        ← AI 继续生成</span></code>
+      </div>
+      <div class="info-box tip">
+        <span class="info-box-icon">💡</span>
+        <p><strong>技巧</strong>：先写一行中文注释（以 <code>#</code> 开头），描述你想实现的功能，然后换行——AI 会根据注释自动生成对应的代码。这是初学者最实用的功能！</p>
       </div>
     </div>
 
-    <div class="features-grid" style="margin-top:2rem">
-      <div class="ai-showcase" style="padding:1.5rem">
-        <div class="ai-tag">🔧 智能修复</div>
-        <h4 style="margin-bottom:0.5rem">自动发现并修复错误</h4>
-        <p style="color:var(--color-text-muted);font-size:0.9rem">当代码出现未定义变量、语法错误等问题时，灵码会自动检测并提供一键修复方案。</p>
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">② 行内对话（<kbd>Ctrl+I</kbd>）</h3>
+    <div class="ai-showcase">
+      <div class="ai-tag">⌨️ 快捷键：Ctrl + I</div>
+      <p style="color:var(--color-text-muted);margin-bottom:1rem">在编辑器中按 <kbd>Ctrl+I</kbd>，会在当前光标位置弹出一个小对话框。你可以直接用中文说"想做什么"，AI 会直接在代码中生成或修改。</p>
+      <p style="color:var(--color-text-muted)"><strong>常见用法</strong>：</p>
+      <ul style="color:var(--color-text-muted);padding-left:1.2rem;margin-top:0.5rem;font-size:0.9rem">
+        <li>光标放在空行 → <kbd>Ctrl+I</kbd> → 输入"写一个读取 CSV 文件的函数" → AI 在这里生成代码</li>
+        <li>选中一段代码 → <kbd>Ctrl+I</kbd> → 输入"给这段代码加注释" → AI 自动添加中文注释</li>
+        <li>选中一段代码 → <kbd>Ctrl+I</kbd> → 输入"优化这段代码" → AI 给出优化版本</li>
+        <li>选中一段代码 → <kbd>Ctrl+I</kbd> → 输入"解释一下这段代码" → AI 用中文逐行解释</li>
+      </ul>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">③ AI 聊天面板（<kbd>Ctrl+L</kbd>）</h3>
+    <div class="ai-showcase">
+      <div class="ai-tag">💬 快捷键：Ctrl + L</div>
+      <p style="color:var(--color-text-muted);margin-bottom:1rem">按 <kbd>Ctrl+L</kbd> 打开右侧的 AI 聊天面板——就像和一个编程老师实时聊天。你问什么它都能回答，而且能看到你正在编辑的代码。</p>
+      <p style="color:var(--color-text-muted)"><strong>文科生常用提问</strong>：</p>
+      <div class="code-block" data-lang="你可以问 AI 的问题">
+<code><span class="cm"># 学习编程</span>
+Python 里 for 循环怎么用？给我一个简单例子
+list 和 dictionary 有什么区别？用中文解释
+
+<span class="cm"># 写作业</span>
+帮我写一个函数，输入一个列表，返回其中的最大值
+如何用 pandas 读取 Excel 文件并筛选特定列？
+
+<span class="cm"># 调试错误</span>
+这段代码报错 "IndexError: list index out of range"
+是什么意思？怎么修？
+
+<span class="cm"># 理解概念</span>
+什么是函数？为什么要用函数？用生活中的例子解释</code>
       </div>
-      <div class="ai-showcase" style="padding:1.5rem">
-        <div class="ai-tag">💬 智能问答</div>
-        <h4 style="margin-bottom:0.5rem">用自然语言提问</h4>
-        <p style="color:var(--color-text-muted);font-size:0.9rem">在右侧 AI 面板中，可以直接用中文提问："如何用 Python 读取 Excel 文件？"，灵码会给出代码示例。</p>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">④ 右键菜单（选中代码后右键）</h3>
+    <div class="ai-showcase">
+      <div class="ai-tag">🖱️ 鼠标操作</div>
+      <p style="color:var(--color-text-muted);margin-bottom:1rem">选中一段代码 → 右键 → 在弹出菜单中找到 <strong>"Lingma"</strong> 选项。提供以下快捷操作：</p>
+      <div class="features-grid" style="margin-top:1rem">
+        <div class="feature-card" style="padding:1.2rem">
+          <h4 style="font-size:0.95rem">📖 解释代码</h4>
+          <p style="font-size:0.85rem">用中文逐行解释选中代码的功能，帮你理解每一行在做什么。<strong>学习编程的最佳工具</strong>。</p>
+        </div>
+        <div class="feature-card" style="padding:1.2rem">
+          <h4 style="font-size:0.95rem">📝 添加注释</h4>
+          <p style="font-size:0.85rem">自动为代码添加中文注释。交作业前一键加上注释，省时省力。</p>
+        </div>
+        <div class="feature-card" style="padding:1.2rem">
+          <h4 style="font-size:0.95rem">🧪 生成测试</h4>
+          <p style="font-size:0.85rem">自动生成测试代码，验证你写的函数是否正确。</p>
+        </div>
+        <div class="feature-card" style="padding:1.2rem">
+          <h4 style="font-size:0.95rem">🔧 修复问题</h4>
+          <p style="font-size:0.85rem">AI 自动检查代码中的问题并修复，包括语法错误、逻辑漏洞等。</p>
+        </div>
+        <div class="feature-card" style="padding:1.2rem">
+          <h4 style="font-size:0.95rem">🔄 优化代码</h4>
+          <p style="font-size:0.85rem">让代码更简洁、更高效、更符合 Python 最佳实践。</p>
+        </div>
+        <div class="feature-card" style="padding:1.2rem">
+          <h4 style="font-size:0.95rem">📄 生成文档</h4>
+          <p style="font-size:0.85rem">自动生成函数的 docstring 文档字符串，专业规范。</p>
+        </div>
       </div>
-      <div class="ai-showcase" style="padding:1.5rem">
-        <div class="ai-tag">📝 多文件修改</div>
-        <h4 style="margin-bottom:0.5rem">跨文件批量编辑</h4>
-        <p style="color:var(--color-text-muted);font-size:0.9rem">描述修改需求后，灵码可以同时修改多个文件，并逐一展示变更供你审查确认。</p>
-      </div>
-      <div class="ai-showcase" style="padding:1.5rem">
-        <div class="ai-tag">🤖 编程智能体</div>
-        <h4 style="margin-bottom:0.5rem">端到端完成任务</h4>
-        <p style="color:var(--color-text-muted);font-size:0.9rem">描述编码任务后，智能体自主拆解步骤、检索代码、编辑文件、运行终端命令，一气呵成。</p>
-      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">⑤ Quest 模式（<kbd>Ctrl+E</kbd>）——最强大的功能</h3>
+    <div class="ai-showcase" style="border-color:var(--color-primary)">
+      <div class="ai-tag">🎯 快捷键：Ctrl + E</div>
+      <p style="color:var(--color-text-muted);margin-bottom:1rem">Quest 模式让 AI 变成一个<strong>全自动编程助手</strong>——你只需用中文描述想做什么，AI 会自动创建文件、写代码、安装依赖、运行程序，从头到尾一条龙。</p>
+      <p style="color:var(--color-text-muted)"><strong>适合场景</strong>：创建新项目、做课程大作业、制作网页、批量数据处理等需要多个步骤的任务。</p>
+      <a href="quest.html" style="color:var(--color-primary);font-size:0.9rem;display:inline-block;margin-top:0.5rem;font-weight:600">📖 查看 Quest 模式详解 →</a>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">📊 五种方式速查对比</h3>
+    <table class="shortcuts-table">
+      <thead><tr><th>方式</th><th>触发方式</th><th>适合场景</th><th>难度</th></tr></thead>
+      <tbody>
+        <tr><td>代码补全</td><td>自动出现，按 <kbd>Tab</kbd> 接受</td><td>写代码时实时辅助</td><td>⭐</td></tr>
+        <tr><td>行内对话</td><td><kbd>Ctrl+I</kbd></td><td>在光标位置直接生成/修改代码</td><td>⭐⭐</td></tr>
+        <tr><td>聊天面板</td><td><kbd>Ctrl+L</kbd></td><td>提问、学概念、调试错误</td><td>⭐</td></tr>
+        <tr><td>右键菜单</td><td>选中代码 → 右键 → Lingma</td><td>解释、注释、测试、优化</td><td>⭐</td></tr>
+        <tr><td>Quest 模式</td><td><kbd>Ctrl+E</kbd></td><td>从零创建完整项目</td><td>⭐⭐⭐</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box tip" style="margin-top:2rem">
+      <span class="info-box-icon">💡</span>
+      <p><strong>初学者建议</strong>：先掌握 <strong>代码补全</strong>（自动就有）和 <strong>聊天面板</strong>（<kbd>Ctrl+L</kbd>），这两个足以覆盖日常学习需求。等熟悉了再探索行内对话和 Quest 模式。</p>
     </div>
   </div>
 </section>
