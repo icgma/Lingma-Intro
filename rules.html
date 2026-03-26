@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>规则与记忆详解 — Lingma IDE 指南</title>
+  <meta name="description" content="详细介绍 Lingma IDE 中的编码规则配置、AI 记忆系统和模型选择功能。">
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>📏</text></svg>">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="url(#nb)"/><path d="M8 10l4-3 4 3M8 18l4 3 4-3M7 14h14" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="nb" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+      Lingma IDE 指南
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="菜单">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">← 返回首页</a></li>
+      <li><a href="#rules">规则系统</a></li>
+      <li><a href="#rule-types">规则类型</a></li>
+      <li><a href="#memory">记忆系统</a></li>
+      <li><a href="#models">模型选择</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" id="top" style="min-height:50vh">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>基础功能</div>
+    <h1>规则 / 记忆 / <span class="gradient-text">模型</span></h1>
+    <p class="tagline">定义 AI 的行为规范，让它记住你的偏好，选择最适合的大模型。</p>
+    <div class="hero-actions">
+      <a href="#rules" class="btn btn-primary">📖 开始阅读</a>
+      <a href="index.html#settings" class="btn btn-outline">← 返回设置</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 规则系统 ===== -->
+<section class="section" id="rules">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">规则系统（Rules）</h2>
+    <p class="section-subtitle">通过设定规则，让 AI 更精准地理解你的编码偏好、项目规范和代码风格，有效提升代码一致性。</p>
+
+    <div class="two-col" style="margin-top:2rem">
+      <div>
+        <h4 style="margin-bottom:1rem">🤔 为什么需要规则？</h4>
+        <p style="color:var(--color-text-muted)">大模型生成代码时，可能会按照自己的"习惯"写代码。例如有时用驼峰命名，有时用下划线命名。通过设定规则，可以统一 AI 的行为。</p>
+        <div class="info-box tip" style="margin-top:1rem">
+          <span class="info-box-icon">💡</span>
+          <p>规则还能有效"对抗模型幻觉"——当你明确告诉 AI "不要使用某个库"时，它就不会生成包含该库的代码。</p>
+        </div>
+      </div>
+      <div>
+        <h4 style="margin-bottom:1rem">📁 规则的存放位置</h4>
+        <p style="color:var(--color-text-muted)">项目专属规则存放在项目根目录的 <code>.lingma/rules/</code> 文件夹中，仅对当前工程生效。</p>
+        <div class="code-block" data-lang="项目规则目录结构" style="margin-top:1rem">
+<code>your-project/
+├── .lingma/
+│   └── rules/
+│       ├── <span class="fn">coding_style.md</span>
+│       ├── <span class="fn">naming_convention.md</span>
+│       └── <span class="fn">forbidden_libraries.md</span>
+├── src/
+└── ...</code>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">✏️ 编写规则示例</h3>
+    <div class="code-block" data-lang="coding_style.md">
+<code><span class="cm"># Python 编码风格规范</span>
+
+<span class="kw">## 命名约定</span>
+- 变量名和函数名使用 snake_case
+- 类名使用 PascalCase
+- 常量使用 UPPER_SNAKE_CASE
+- 避免使用单字母变量名（循环变量 i, j 除外）
+
+<span class="kw">## 代码风格</span>
+- 遵循 PEP 8 规范
+- 缩进使用 4 个空格
+- 每行不超过 79 个字符
+- 字符串格式化优先使用 f-string
+
+<span class="kw">## 注释</span>
+- 注释使用中文
+- 每个函数必须包含 docstring
+- 复杂逻辑前添加行内注释
+
+<span class="kw">## 禁止事项</span>
+- 不要使用 global 变量
+- 不要使用 eval() 或 exec()
+- 不要使用裸露的 except（必须指定异常类型）</code>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 四种规则类型 ===== -->
+<section class="section section-alt" id="rule-types">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">四种规则生效模式</h2>
+    <p class="section-subtitle">不同的规则可以设定不同的生效方式，灵活控制应用范围。</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">📌</div>
+        <div class="step-content">
+          <h4>始终生效（Always）</h4>
+          <p>在所有智能会话和行内对话中均生效。适用于项目级的通用规范，如编码风格、偏好格式和默认角色设定。</p>
+          <div class="info-box note" style="margin-top:0.5rem">
+            <span class="info-box-icon">📝</span>
+            <p>推荐初学者使用此模式，确保 AI 始终遵循你的编码规范。</p>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🤖</div>
+        <div class="step-content">
+          <h4>模型决策（Model Decision）</h4>
+          <p>AI 根据当前对话内容和规则描述，自主判断是否应用。适用于非通用但重要的规则。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">✋</div>
+        <div class="step-content">
+          <h4>手动引入（Manual）</h4>
+          <p>在对话中使用 <code>#rule</code> 手动引入特定规则。适用于一次性工作流或特殊场景的自定义提示词。</p>
+          <div class="code-block" data-lang="使用示例" style="margin-top:0.5rem">
+<code><span class="cm"># 在对话框中输入：</span>
+#coding_style 请帮我重构这个函数</code>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">📁</div>
+        <div class="step-content">
+          <h4>指定文件生效（Specific Files）</h4>
+          <p>根据文件匹配模式生效。例如只在 <code>*.py</code> 文件中应用 Python 规范，只在 <code>src/**/*.ts</code> 中应用 TypeScript 规范。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-box warning" style="margin-top:2rem">
+      <span class="info-box-icon">⚠️</span>
+      <p><strong>注意</strong>：单个规则文件最大限制为 <strong>10000 字符</strong>，超出部分会被自动截断。规则仅支持自然语言描述，不支持图片或链接解析。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 记忆系统 ===== -->
+<section class="section" id="memory">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">记忆系统（Memory）</h2>
+    <p class="section-subtitle">AI 助手会自动学习你的编码习惯和偏好，越用越懂你。</p>
+
+    <div class="features-grid" style="margin-top:2rem">
+      <div class="feature-card">
+        <div class="feature-icon">🤖</div>
+        <h3>自动记忆</h3>
+        <p>AI 在对话中自动识别并记忆你的偏好。例如当你多次要求使用中文注释时，AI 会记住这个偏好。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <h3>主动记忆</h3>
+        <p>在智能体模式下，可以直接告诉 AI 需要记住的内容，例如："记住我的项目使用 Poetry 管理依赖"。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗑️</div>
+        <h3>查看与管理</h3>
+        <p>在设置面板的"记忆"页面，可以查看所有已学习的记忆，编辑不准确的内容，或删除不需要的记忆。</p>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">🌐 记忆的作用范围</h3>
+    <div class="features-grid" style="grid-template-columns:1fr 1fr">
+      <div class="ai-showcase" style="padding:1.5rem">
+        <div class="ai-tag">👤 个人习惯</div>
+        <h4 style="margin:0.5rem 0">全局生效</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">与你个人编码习惯相关的记忆（如偏好的注释语言、命名风格），在所有项目中生效。</p>
+      </div>
+      <div class="ai-showcase" style="padding:1.5rem">
+        <div class="ai-tag">📂 项目相关</div>
+        <h4 style="margin:0.5rem 0">工程级生效</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">与特定项目相关的记忆（如"本项目使用 Flask 框架"），仅在打开该项目时生效。</p>
+      </div>
+    </div>
+
+    <div class="info-box tip" style="margin-top:2rem">
+      <span class="info-box-icon">💡</span>
+      <p><strong>规则 vs 记忆</strong>：两者都能影响 AI 行为，但规则是你<strong>主动定义</strong>的硬性约束，记忆是 AI <strong>自动学习</strong>的软性偏好。<strong>当两者冲突时，规则优先</strong>。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 模型选择 ===== -->
+<section class="section section-alt" id="models">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">模型选择</h2>
+    <p class="section-subtitle">根据任务场景选择最合适的 AI 大模型。在设置面板的"模型"页面或对话框中切换。</p>
+
+    <table class="shortcuts-table" style="margin-top:2rem">
+      <thead><tr><th>模型</th><th>特点</th><th>适用场景</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Qwen3</strong>（默认）</td><td>均衡的速度和质量</td><td>日常编码、问答对话</td></tr>
+        <tr><td><strong>Qwen3-Coder</strong></td><td>代码专精，工具调用能力强</td><td>Quest 模式、复杂编码任务</td></tr>
+        <tr><td><strong>DeepSeek-V3</strong></td><td>深度推理和长文本处理</td><td>代码审查、架构设计</td></tr>
+        <tr><td><strong>DeepSeek-R1</strong></td><td>满血版 671B，推理最强</td><td>复杂数学/算法问题</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box tip" style="margin-top:2rem">
+      <span class="info-box-icon">💡</span>
+      <p><strong>初学者建议</strong>：保持默认的 Qwen3 模型即可满足大部分需求。当遇到特别复杂的编程问题时，可以尝试切换到 Qwen3-Coder 或 DeepSeek-R1。</p>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">🔄 如何切换模型</h3>
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>方式一：对话框切换</h4>
+          <p>在 AI 对话框的输入区域底部，点击模型名称即可切换到其他可用模型。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>方式二：设置面板</h4>
+          <p>打开设置 → 模型页面，可以查看所有可用模型并设置默认模型。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p><a href="index.html">← 返回 Lingma IDE 入门指南</a> | <a href="quest.html">Quest 模式 →</a> | <a href="skills.html">技能/智能体 →</a></p>
+  <p style="margin-top:0.5rem;opacity:0.6">© 2026 基础编程课程组</p>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+const particleContainer = document.getElementById('particles');
+const codeSnippets = ['Rules', 'Memory', 'Qwen3', 'PEP8', '.lingma/', '#rule', 'Always', 'Manual', 'Model', 'Style', 'Config'];
+for (let i = 0; i < 15; i++) {
+  const p = document.createElement('span');
+  p.className = 'particle';
+  p.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 20 + 's';
+  p.style.animationDuration = (15 + Math.random() * 15) + 's';
+  particleContainer.appendChild(p);
+}
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 100;
+  sections.forEach(sec => {
+    const top = sec.offsetTop, h = sec.offsetHeight, id = sec.getAttribute('id');
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (link) link.classList.toggle('active', scrollY >= top && scrollY < top + h);
+  });
+});
+</script>
+</body>
+</html>

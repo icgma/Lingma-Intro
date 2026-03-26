@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quest 模式详解 — Lingma IDE 指南</title>
+  <meta name="description" content="详细介绍 Lingma IDE 中 Quest 模式的概念、三种场景、执行环境和任务管理方法。">
+  <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🎯</text></svg>">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-brand">
+      <svg viewBox="0 0 28 28" fill="none"><rect width="28" height="28" rx="6" fill="url(#nb)"/><path d="M8 10l4-3 4 3M8 18l4 3 4-3M7 14h14" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><defs><linearGradient id="nb" x1="0" y1="0" x2="28" y2="28"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg>
+      Lingma IDE 指南
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="菜单">☰</button>
+    <ul class="nav-links">
+      <li><a href="index.html">← 返回首页</a></li>
+      <li><a href="#overview">概览</a></li>
+      <li><a href="#scenarios">场景</a></li>
+      <li><a href="#environments">环境</a></li>
+      <li><a href="#workflow">工作流</a></li>
+      <li><a href="#tips">技巧</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero" id="top" style="min-height:50vh">
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="dot"></span>高级功能</div>
+    <h1>Quest 模式 <span class="gradient-text">详解</span></h1>
+    <p class="tagline">委派任务给 AI，让编程智能体自主规划、执行和验证，端到端完成开发任务。</p>
+    <div class="hero-actions">
+      <a href="#overview" class="btn btn-primary">📖 开始阅读</a>
+      <a href="index.html#settings" class="btn btn-outline">← 返回设置</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Editor vs Quest ===== -->
+<section class="section" id="overview">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">Editor 模式 vs Quest 模式</h2>
+    <p class="section-subtitle">Lingma IDE 提供两种工作模式，可通过左上角按钮随时切换。</p>
+
+    <div class="features-grid" style="grid-template-columns:1fr 1fr">
+      <div class="ai-showcase" style="padding:2rem">
+        <div class="ai-tag">✏️ Editor 模式</div>
+        <h3 style="margin:0.5rem 0 1rem">实时协作编程</h3>
+        <ul style="color:var(--color-text-muted);font-size:0.9rem;padding-left:1.2rem">
+          <li>你主导编码，AI 实时辅助</li>
+          <li>代码补全、行内对话、智能修复</li>
+          <li>适合日常编码和小型修改</li>
+          <li>快捷键：<kbd>Ctrl+I</kbd> 行内对话</li>
+        </ul>
+      </div>
+      <div class="ai-showcase" style="padding:2rem;border-color:var(--color-primary)">
+        <div class="ai-tag">🎯 Quest 模式</div>
+        <h3 style="margin:0.5rem 0 1rem">任务委派，自主执行</h3>
+        <ul style="color:var(--color-text-muted);font-size:0.9rem;padding-left:1.2rem">
+          <li>AI 主导执行，你审查确认</li>
+          <li>自主规划、编辑代码、运行命令</li>
+          <li>适合复杂功能开发和项目搭建</li>
+          <li>快捷键：<kbd>Ctrl+E</kbd> 进入</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 三种场景 ===== -->
+<section class="section section-alt" id="scenarios">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">三种任务场景</h2>
+    <p class="section-subtitle">创建 Quest 任务时，可选择以下场景。不选则 AI 自动判断最适合的方式。</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">📋</div>
+        <div class="step-content">
+          <h4>Spec 驱动</h4>
+          <p>适用于<strong>复杂功能开发、重构</strong>或需要严格质量把控的项目。</p>
+          <div class="info-box note" style="margin-top:1rem">
+            <span class="info-box-icon">📝</span>
+            <p><strong>工作流程</strong>：AI 先与你对齐需求范围 → 设计实施方案和验收标准（生成 Spec 文档）→ 你确认后开始执行 → 按 Spec 逐项完成。</p>
+          </div>
+          <div class="code-block" data-lang="适用示例" style="margin-top:1rem">
+<code><span class="cm"># 适合 Spec 驱动的任务：</span>
+"为我的 Flask 应用添加用户认证模块，
+ 包含注册、登录、密码重置功能，
+ 使用 JWT Token，密码用 bcrypt 加密"</code>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🌐</div>
+        <div class="step-content">
+          <h4>搭建网站</h4>
+          <p>适用于<strong>从零创建网站</strong>或快速原型。描述需求后 AI 自动搭建页面和整体结构。</p>
+          <div class="code-block" data-lang="适用示例" style="margin-top:1rem">
+<code><span class="cm"># 适合搭建网站的任务：</span>
+"帮我创建一个个人博客网站，
+ 深色主题，包含首页、文章列表和关于页面，
+ 使用 HTML/CSS/JS，支持响应式设计"</code>
+          </div>
+          <div class="info-box tip" style="margin-top:1rem">
+            <span class="info-box-icon">💡</span>
+            <p>该模式支持<strong>实时预览</strong>——在产物区的 Preview Tab 可以一边开发一边看效果。</p>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🧪</div>
+        <div class="step-content">
+          <h4>原型探索</h4>
+          <p>适用于<strong>快速验证想法</strong>或创意实验。AI 将一个想法转化为可运行的原型。</p>
+          <div class="code-block" data-lang="适用示例" style="margin-top:1rem">
+<code><span class="cm"># 适合原型探索的任务：</span>
+"做一个贪吃蛇小游戏，
+ 用 Python + Pygame，
+ 支持键盘操控和计分功能"</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 执行环境 ===== -->
+<section class="section" id="environments">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">执行环境</h2>
+    <p class="section-subtitle">Quest 任务支持两种执行环境，影响代码变更的位置和隔离程度。</p>
+
+    <div class="features-grid" style="grid-template-columns:1fr 1fr">
+      <div class="feature-card">
+        <div class="feature-icon">💻</div>
+        <h3>Local（本地）</h3>
+        <p><strong>直接在主工作区修改</strong>。启动成本为零，适合简单任务和快速验证。支持多个本地任务并行。</p>
+        <table class="shortcuts-table" style="margin-top:1rem;font-size:0.85rem">
+          <tbody>
+            <tr><td>隔离性</td><td>低 — 直接改主代码</td></tr>
+            <tr><td>启动速度</td><td>即时</td></tr>
+            <tr><td>适用场景</td><td>小修改、快速验证</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌿</div>
+        <h3>Worktree（并行）</h3>
+        <p><strong>后台创建隐藏工作区</strong>。主分支保持干净，适合中等复杂任务和多任务并行。可无限次迭代。</p>
+        <table class="shortcuts-table" style="margin-top:1rem;font-size:0.85rem">
+          <tbody>
+            <tr><td>隔离性</td><td>高 — 独立工作区</td></tr>
+            <tr><td>启动速度</td><td>稍慢（需创建）</td></tr>
+            <tr><td>适用场景</td><td>复杂功能、并行开发</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 工作流 ===== -->
+<section class="section section-alt" id="workflow">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">Quest 工作流</h2>
+    <p class="section-subtitle">从创建任务到完成交付的完整流程。</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h4>创建任务</h4>
+          <p>按 <kbd>Ctrl+E</kbd> 进入 Quest 模式，点击 <strong>"新建 Quest"</strong> 按钮，选择场景和执行环境。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h4>描述需求</h4>
+          <p>用自然语言清晰描述你的开发需求。AI 可能会先提出澄清问题以确认细节。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h4>AI 规划执行</h4>
+          <p>AI 生成执行计划（To-do List），逐步完成每个步骤。你可以在对话区实时查看进度。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>审查变更</h4>
+          <p>在产物区的 <strong>Changed Files</strong> 标签查看所有代码变更。可以逐文件审查、接受或丢弃。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h4>追加或调整</h4>
+          <p>如果结果不满意，可以直接在输入框追加新需求，AI 会调整计划继续工作。也可点击 <strong>"暂停"</strong> 按钮暂停任务。</p>
+        </div>
+      </div>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">📊 任务状态说明</h3>
+    <table class="shortcuts-table">
+      <thead><tr><th>状态</th><th>图标</th><th>含义</th></tr></thead>
+      <tbody>
+        <tr><td>Running</td><td>🔄</td><td>任务正在执行中</td></tr>
+        <tr><td>Action Required</td><td>⏳</td><td>等待你的确认或操作</td></tr>
+        <tr><td>Ready</td><td>✅</td><td>任务已完成</td></tr>
+        <tr><td>Error</td><td>❌</td><td>执行过程中遇到错误</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ===== 使用技巧 ===== -->
+<section class="section" id="tips">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">使用技巧</h2>
+    <p class="section-subtitle">让 Quest 模式更高效的实用建议。</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">✍️</div>
+        <h3>写好任务描述</h3>
+        <p>描述越具体越好。包含技术选型、功能需求、UI 要求等细节，AI 的执行质量越高。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📐</div>
+        <h3>配合规则使用</h3>
+        <p>在设置中配置编码规则，Quest 任务会自动遵循，确保代码风格一致。<a href="rules.html">了解规则 →</a></p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔌</div>
+        <h3>搭配 MCP 服务</h3>
+        <p>配置 MCP 后，Quest 智能体可以调用外部工具（查文档、查数据库等），能力更强。<a href="mcp.html">了解 MCP →</a></p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌿</div>
+        <h3>复杂任务用 Worktree</h3>
+        <p>大功能开发建议使用 Worktree 环境，保持主分支干净，确认满意后再合并。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔄</div>
+        <h3>迭代而非重做</h3>
+        <p>如果结果不完美，追加修改需求比重新创建任务更高效。AI 会在已有基础上优化。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📁</div>
+        <h3>多任务并行</h3>
+        <p>可以同时运行多个 Quest 任务，如一个做前端一个做后端。任务列表按最后交互时间排序。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p><a href="index.html">← 返回 Lingma IDE 入门指南</a> | <a href="skills.html">技能/智能体/指令 →</a> | <a href="mcp.html">MCP 服务 →</a></p>
+  <p style="margin-top:0.5rem;opacity:0.6">© 2026 基础编程课程组</p>
+</footer>
+
+<script>
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
+const fadeEls = document.querySelectorAll('.fade-in');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }});
+}, { threshold: 0.1 });
+fadeEls.forEach(el => observer.observe(el));
+const particleContainer = document.getElementById('particles');
+const codeSnippets = ['Quest', 'Spec', 'Worktree', 'Agent', 'Plan', 'Execute', 'Review', 'Local', 'Todo', 'Preview', 'Apply'];
+for (let i = 0; i < 15; i++) {
+  const p = document.createElement('span');
+  p.className = 'particle';
+  p.textContent = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 20 + 's';
+  p.style.animationDuration = (15 + Math.random() * 15) + 's';
+  particleContainer.appendChild(p);
+}
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY + 100;
+  sections.forEach(sec => {
+    const top = sec.offsetTop, h = sec.offsetHeight, id = sec.getAttribute('id');
+    const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+    if (link) link.classList.toggle('active', scrollY >= top && scrollY < top + h);
+  });
+});
+</script>
+</body>
+</html>
