@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MCP 服务详解 — Lingma IDE 指南</title>
-  <meta name="description" content="详细介绍 Lingma IDE 中 MCP（模型上下文协议）服务的概念、配置方法和实际应用场景。">
+  <meta name="description" content="详细介绍 Lingma IDE 中 MCP 服务的概念、安装和使用方法，面向零基础文科学生。">
   <link rel="stylesheet" href="index.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🔌</text></svg>">
 </head>
 <body>
 
-<!-- ===== Navigation ===== -->
 <nav class="navbar" id="navbar">
   <div class="navbar-inner">
     <a href="index.html" class="nav-brand">
@@ -21,21 +20,20 @@
     <ul class="nav-links">
       <li><a href="index.html">← 返回首页</a></li>
       <li><a href="#what-is-mcp">什么是MCP</a></li>
-      <li><a href="#how-to-add">添加服务</a></li>
-      <li><a href="#mcp-plaza">MCP广场</a></li>
-      <li><a href="#use-cases">应用场景</a></li>
-      <li><a href="skills.html">技能/智能体</a></li>
+      <li><a href="#install">安装</a></li>
+      <li><a href="#plaza">MCP广场</a></li>
+      <li><a href="#usecases">应用场景</a></li>
+      <li><a href="#faq">常见问题</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- ===== Hero ===== -->
 <section class="hero" id="top" style="min-height:50vh">
   <div class="hero-particles" id="particles"></div>
   <div class="hero-content">
     <div class="hero-badge"><span class="dot"></span>高级功能</div>
     <h1>MCP 服务 <span class="gradient-text">详解</span></h1>
-    <p class="tagline">Model Context Protocol — 让 AI 编码助手连接外部工具和数据源，无限扩展能力边界。</p>
+    <p class="tagline">给 AI 装上"外挂"——让它能搜索网页、查数据库、读文档，不再局限于聊天。</p>
     <div class="hero-actions">
       <a href="#what-is-mcp" class="btn btn-primary">📖 开始阅读</a>
       <a href="index.html#settings" class="btn btn-outline">← 返回设置</a>
@@ -47,255 +45,266 @@
 <section class="section" id="what-is-mcp">
   <div class="section-inner fade-in">
     <h2 class="section-title">什么是 MCP？</h2>
-    <p class="section-subtitle">MCP（Model Context Protocol，模型上下文协议）是一种开放标准协议，为大语言模型提供了标准化的外部工具和上下文集成方式。</p>
+    <p class="section-subtitle">MCP（Model Context Protocol）是一种让 AI 连接外部工具的标准协议——听着复杂，其实很好理解。</p>
 
-    <div class="two-col" style="margin-top:2rem">
-      <div>
-        <h4 style="margin-bottom:1rem">🤔 通俗理解</h4>
-        <p style="color:var(--color-text-muted)">你可以把 MCP 想象成给 AI 助手安装的"App Store"。每个 MCP 服务就像一个 App，让 AI 具备新的能力——比如查数据库、读文档、调 API 等。</p>
-        <div class="info-box tip" style="margin-top:1.5rem">
-          <span class="info-box-icon">💡</span>
-          <p>没有 MCP 时，AI 只能读你当前的代码文件。有了 MCP，AI 可以主动去获取外部信息，大大提升工作效率。</p>
-        </div>
-      </div>
-      <div>
-        <h4 style="margin-bottom:1rem">🏗️ 技术架构</h4>
-        <p style="color:var(--color-text-muted)">MCP 服务支持两种通信模式：</p>
-        <div class="step-list" style="margin-top:1rem">
-          <div class="step-item">
-            <div class="step-number" style="font-size:0.8rem">1</div>
-            <div class="step-content">
-              <h4>STDIO 模式</h4>
-              <p>通过标准输入输出流通信，<strong>服务在本地运行</strong>。适合轻量级工具，启动快。</p>
-            </div>
-          </div>
-          <div class="step-item">
-            <div class="step-number" style="font-size:0.8rem">2</div>
-            <div class="step-content">
-              <h4>SSE 模式</h4>
-              <p>采用服务器发送事件协议通信，<strong>服务可在远端或本地</strong>。适合复杂服务或共享服务。</p>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="ai-showcase" style="margin-bottom:2rem">
+      <div class="ai-tag">🧠 通俗理解</div>
+      <h3 style="margin:0.5rem 0 1rem">一个比喻就够了</h3>
+      <p style="color:var(--color-text-muted)">你可以把 AI 想象成一个<strong>聪明但被关在房间里的助手</strong>。它很会写代码，但看不到房间外面的世界——不能上网搜索、不能查数据库、不能读你电脑上的文档。</p>
+      <p style="color:var(--color-text-muted);margin-top:1rem">MCP 就是给这个房间<strong>开了几扇窗户</strong>。通过不同的 MCP 服务（窗户），AI 可以：</p>
+      <ul style="color:var(--color-text-muted);padding-left:1.5rem;margin-top:0.5rem">
+        <li>🔍 通过 <strong>Google Search</strong> 窗户搜索最新信息</li>
+        <li>📚 通过 <strong>Fetch</strong> 窗户阅读网页内容</li>
+        <li>🗃️ 通过 <strong>Database</strong> 窗户查询数据库</li>
+        <li>📝 通过 <strong>Notion</strong> 窗户读写你的笔记</li>
+      </ul>
     </div>
 
-    <div class="features-grid" style="margin-top:2.5rem">
+    <h3 style="margin:2rem 0 1.5rem;color:var(--color-text-bright)">🔧 两种通信方式</h3>
+    <p style="color:var(--color-text-muted);margin-bottom:1.5rem">MCP 工具和 AI 之间有两种"对话方式"，了解一下即可，不影响使用：</p>
+    <div class="features-grid" style="grid-template-columns:1fr 1fr">
+      <div class="feature-card">
+        <div class="feature-icon">💻</div>
+        <h3>STDIO 模式<span style="color:var(--color-success);font-size:0.8rem;margin-left:0.5rem">常见</span></h3>
+        <p>工具在你的电脑上本地运行。就像在电脑里安装了一个软件，打开就用。</p>
+        <p style="color:var(--color-text-dim);font-size:0.85rem;margin-top:0.5rem">特点：速度快、隐私好（数据不出电脑）、大部分工具用这种</p>
+      </div>
       <div class="feature-card">
         <div class="feature-icon">🌐</div>
-        <h3>开放标准</h3>
-        <p>MCP 不是灵码独有的协议，是行业通用标准。学会了在灵码中使用，到其他支持 MCP 的工具中也同样适用。</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🧩</div>
-        <h3>即插即用</h3>
-        <p>大多数 MCP 服务开箱即用，只需在设置中添加即可。无需编写代码或修改配置文件。</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🤖</div>
-        <h3>智能体自主调用</h3>
-        <p>编程智能体会根据你的需求描述，自主判断是否需要调用 MCP 工具，并在执行前征求你的确认。</p>
+        <h3>SSE 模式</h3>
+        <p>工具在远程服务器上运行，通过网络连接。就像用网页版的在线工具。</p>
+        <p style="color:var(--color-text-dim);font-size:0.85rem;margin-top:0.5rem">特点：无需安装、随时可用、适合团队共享的服务</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== 添加 MCP 服务 ===== -->
-<section class="section section-alt" id="how-to-add">
+<!-- ===== 如何安装 MCP ===== -->
+<section class="section section-alt" id="install">
   <div class="section-inner fade-in">
-    <h2 class="section-title">如何添加 MCP 服务</h2>
-    <p class="section-subtitle">两种方式：从 MCP 广场一键安装，或手动配置服务。</p>
+    <h2 class="section-title">如何安装 MCP 服务</h2>
+    <p class="section-subtitle">两种安装方式：去"MCP 广场"一键安装（推荐），或手动配置。</p>
 
-    <h3 style="margin-bottom:1.5rem;color:var(--color-text-bright)">方式一：从 MCP 广场安装（推荐）</h3>
+    <h3 style="margin-bottom:1.5rem;color:var(--color-text-bright)">方式一：MCP 广场安装（推荐 👍）</h3>
     <div class="step-list">
       <div class="step-item">
         <div class="step-number">1</div>
         <div class="step-content">
-          <h4>打开设置</h4>
-          <p>点击左下角齿轮图标，或通过命令面板搜索 <code>Lingma: Settings</code>。</p>
+          <h4>打开 MCP 设置</h4>
+          <p>在灵码设置面板中，找到左侧的 <strong>"MCP"</strong> 选项，点击进入。</p>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">2</div>
         <div class="step-content">
-          <h4>进入 MCP 服务页面</h4>
-          <p>在左侧导航中点击 <strong>MCP 服务</strong>，切换到 <strong>MCP 广场</strong> 标签页。</p>
+          <h4>浏览 MCP 广场</h4>
+          <p>点击 <strong>"MCP 广场"</strong> 按钮，就像进了一个应用商店：里面列出了所有可用的 MCP 工具，有描述、分类和安装按钮。</p>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">3</div>
         <div class="step-content">
-          <h4>搜索并安装</h4>
-          <p>浏览或搜索所需的 MCP 服务，点击 <strong>安装</strong> 按钮。安装完成后切换到"我的服务"页面，图标显示为 <strong style="color:#10b981">绿色</strong> 即表示连接成功。</p>
+          <h4>一键安装</h4>
+          <p>找到你需要的工具，点击 <strong>"安装"</strong> 按钮。安装完成后，灵码会自动加载这个工具，无需重启。</p>
         </div>
       </div>
-    </div>
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h4>在对话中使用</h4>
+          <p>安装完成后，AI 就可以使用这个工具了。你不需要额外操作——当 AI 判断需要用到某个工具时，会自动调用。</p>
+          <div class="code-block" data-lang="使用示例">
+<code><span class="cm"># 安装了 Google Search MCP 后：</span>
+请帮我查一下 Python pandas 库的最新版本是多少
 
-    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">方式二：手动添加</h3>
-    <div class="step-list">
-      <div class="step-item">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h4>点击「+」按钮</h4>
-          <p>在 MCP 服务页面右上角，点击 <strong>+</strong> 号。</p>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h4>选择添加方式</h4>
-          <p>可以选择 <strong>手工添加</strong> 或 <strong>导入 JSON 配置</strong>。</p>
-        </div>
-      </div>
-      <div class="step-item">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h4>填写服务信息</h4>
-          <p>根据服务类型填写：</p>
-          <div class="two-col" style="margin-top:1rem">
-            <div class="code-block" data-lang="STDIO 模式">
-<code>{
-  "name": "my-tool",
-  "command": "npx",
-  "args": ["-y", "@example/mcp-server"],
-  "env": {
-    "API_KEY": "your-key"
-  }
-}</code>
-            </div>
-            <div class="code-block" data-lang="SSE 模式">
-<code>{
-  "name": "remote-tool",
-  "url": "https://mcp.example.com/sse",
-  "headers": {
-    "Authorization": "Bearer xxx"
-  }
-}</code>
-            </div>
+<span class="cm"># AI 会自动搜索网页并告诉你答案</span>
+<span class="cm"># 你会看到对话中出现"正在使用 Google Search..."的提示</span></code>
           </div>
         </div>
       </div>
     </div>
+
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">方式二：手动配置（进阶）</h3>
+    <p style="color:var(--color-text-muted);margin-bottom:1rem">如果 MCP 广场里没有你需要的工具（很少见），可以手动添加。在设置面板的 MCP 页面，点击"添加自定义 MCP"，填入配置信息：</p>
+    <div class="code-block" data-lang="手动配置示例（JSON 格式）">
+<code>{
+  <span class="str">"mcpServers"</span>: {
+    <span class="str">"fetch"</span>: {
+      <span class="str">"command"</span>: <span class="str">"uvx"</span>,
+      <span class="str">"args"</span>: [<span class="str">"mcp-fetch"</span>]
+    }
+  }
+}</code>
+    </div>
+    <div class="info-box note" style="margin-top:1rem">
+      <span class="info-box-icon">📝</span>
+      <p>手动配置需要一定的技术基础。<strong>初学者使用 MCP 广场一键安装就够了</strong>，无需手动配置。</p>
+    </div>
   </div>
 </section>
 
-<!-- ===== MCP 广场 ===== -->
-<section class="section" id="mcp-plaza">
+<!-- ===== MCP 广场推荐 ===== -->
+<section class="section" id="plaza">
   <div class="section-inner fade-in">
-    <h2 class="section-title">MCP 广场</h2>
-    <p class="section-subtitle">通义灵码集成了魔搭社区 MCP 市场，提供 3800+ 个 MCP 服务，覆盖十大热门领域。</p>
+    <h2 class="section-title">MCP 广场热门工具</h2>
+    <p class="section-subtitle">以下是对编程初学者和文科学生最有用的几个 MCP 工具。</p>
 
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">🛠️</div>
-        <h3>开发者工具</h3>
-        <p>GitHub、GitLab、Jira、Linear 等项目管理和代码托管工具集成。</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📁</div>
-        <h3>文件系统</h3>
-        <p>本地文件/目录的增删改查操作，支持批量处理。</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🗄️</div>
-        <h3>数据库</h3>
-        <p>MySQL、PostgreSQL、MongoDB 等数据库连接，自动生成查询和 DAO 代码。</p>
-      </div>
-      <div class="feature-card">
         <div class="feature-icon">🔍</div>
-        <h3>搜索引擎</h3>
-        <p>让 AI 联网搜索最新信息，获取实时的技术文档和教程。</p>
+        <h3>Google Search</h3>
+        <p>让 AI 能够搜索谷歌，获取最新信息。再也不用担心 AI 的知识过时了。</p>
+        <p style="font-size:0.85rem;color:var(--color-text-dim);margin-top:0.5rem"><strong>实用场景</strong>：查技术文档、找错误解决方案、了解最新库版本</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Fetch（网页读取）</h3>
+        <p>让 AI 能够读取任意网页的内容。你给它一个链接，它帮你提取关键信息。</p>
+        <p style="font-size:0.85rem;color:var(--color-text-dim);margin-top:0.5rem"><strong>实用场景</strong>：阅读 API 文档、获取数据源页面内容、分析网页结构</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Sequential Thinking</h3>
+        <p>让 AI 按步骤一步步思考，减少"拍脑袋"式的错误回答。让推理更可靠。</p>
+        <p style="font-size:0.85rem;color:var(--color-text-dim);margin-top:0.5rem"><strong>实用场景</strong>：解决复杂逻辑问题、编写多步骤算法</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🐙</div>
+        <h3>GitHub</h3>
+        <p>让 AI 直接访问你的 GitHub 仓库，查看代码、创建 Issue、管理分支。</p>
+        <p style="font-size:0.85rem;color:var(--color-text-dim);margin-top:0.5rem"><strong>实用场景</strong>：团队协作、代码版本管理、查看作业提交</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗃️</div>
+        <h3>SQLite / MySQL</h3>
+        <p>让 AI 直接查询数据库，帮你写 SQL 语句并执行，查看查询结果。</p>
+        <p style="font-size:0.85rem;color:var(--color-text-dim);margin-top:0.5rem"><strong>实用场景</strong>：数据分析作业、学习数据库课程</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📐</div>
-        <h3>设计工具</h3>
-        <p>MasterGo、Figma 等设计稿读取，自动将设计稿转换为前端代码。</p>
+        <h3>Playwright（网页自动化）</h3>
+        <p>让 AI 控制浏览器自动操作网页：点击按钮、填写表单、截图。</p>
+        <p style="font-size:0.85rem;color:var(--color-text-dim);margin-top:0.5rem"><strong>实用场景</strong>：测试你做的网页、爬取公开数据</p>
       </div>
-      <div class="feature-card">
-        <div class="feature-icon">🚀</div>
-        <h3>DevOps</h3>
-        <p>云效 DevOps 集成，实现从工作项到代码生成、提交的自动化流程。</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>数据分析</h3>
-        <p>连接数据分析平台，AI 自动进行数据查询、统计和可视化。</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🗺️</div>
-        <h3>地图服务</h3>
-        <p>地图 API 集成，适合需要地理信息处理的应用开发。</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🏋️</div>
-        <h3>算法练习</h3>
-        <p>LeetCode MCP 服务，在 IDE 内随机获取算法题并辅助解题。</p>
-      </div>
+    </div>
+
+    <div class="info-box tip" style="margin-top:2rem">
+      <span class="info-box-icon">💡</span>
+      <p><strong>入门推荐</strong>：先安装 <strong>Google Search</strong> 和 <strong>Fetch</strong> 两个工具，这能覆盖大部分课程需求。等需要时再安装其他工具。</p>
     </div>
   </div>
 </section>
 
 <!-- ===== 应用场景 ===== -->
-<section class="section section-alt" id="use-cases">
+<section class="section section-alt" id="usecases">
   <div class="section-inner fade-in">
-    <h2 class="section-title">实际应用场景</h2>
-    <p class="section-subtitle">以下是几个常见的 MCP + 智能体协作示例，展示 MCP 如何提升开发效率。</p>
+    <h2 class="section-title">文科生实用场景</h2>
+    <p class="section-subtitle">以下是你在课程中可能用到 MCP 的真实场景。</p>
 
     <div class="step-list">
       <div class="step-item">
-        <div class="step-number">📝</div>
+        <div class="step-number">📚</div>
         <div class="step-content">
-          <h4>场景一：根据在线文档生成代码</h4>
-          <p>配置 <strong>Fetch</strong> MCP 服务后，可以告诉 AI："参考这个 API 文档链接，帮我写一个 Python 客户端"。AI 会自动读取网页内容并生成对应代码。</p>
-          <div class="code-block" data-lang="对话示例">
-<code><span class="cm"># 你对 AI 说：</span>
-参考 https://api.example.com/docs ，
-帮我写一个获取用户列表的 Python 函数。
-
-<span class="cm"># AI 会：</span>
-<span class="cm"># 1. 调用 Fetch MCP 读取网页内容</span>
-<span class="cm"># 2. 分析 API 文档结构</span>
-<span class="cm"># 3. 生成完整的 Python 代码</span></code>
+          <h4>场景一：查阅技术文档</h4>
+          <p style="color:var(--color-text-muted)">做作业时，不知道某个函数怎么用。让 AI 帮你去官方文档网站查。</p>
+          <div class="code-block" data-lang="你可以这样说">
+<code><span class="cm"># 安装了 Fetch MCP 后</span>
+帮我看一下 pandas 官方文档中
+DataFrame.groupby() 函数的用法，
+并给我一个简单的中文示例。</code>
           </div>
+          <p style="color:var(--color-text-muted);font-size:0.9rem;margin-top:0.5rem"><strong>效果</strong>：AI 会访问 pandas 官方文档网站，读取相关内容，用中文给你解释并提供示例代码。</p>
         </div>
       </div>
       <div class="step-item">
-        <div class="step-number">🗄️</div>
+        <div class="step-number">🐛</div>
         <div class="step-content">
-          <h4>场景二：数据库辅助开发</h4>
-          <p>配置数据库 MCP 后，AI 可以直接查看数据库结构，自动生成 SQL 查询语句和数据访问代码。</p>
+          <h4>场景二：搜索错误解决方案</h4>
+          <p style="color:var(--color-text-muted)">代码报错了看不懂错误信息。让 AI 搜索一下这个错误的典型解决办法。</p>
+          <div class="code-block" data-lang="你可以这样说">
+<code><span class="cm"># 安装了 Google Search MCP 后</span>
+运行代码时出现这个错误：
+ModuleNotFoundError: No module named 'jieba'
+帮我搜一下怎么解决。</code>
+          </div>
+          <p style="color:var(--color-text-muted);font-size:0.9rem;margin-top:0.5rem"><strong>效果</strong>：AI 会搜索这个错误信息，告诉你需要先执行 <code>pip install jieba</code> 来安装这个库。</p>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">🎨</div>
         <div class="step-content">
-          <h4>场景三：设计稿转代码</h4>
-          <p>配置 MasterGo 或 Figma MCP 后，AI 读取设计稿中的组件信息，自动生成对应的 HTML/CSS 代码，大幅减少前端还原工作量。</p>
+          <h4>场景三：设计稿转网页</h4>
+          <p style="color:var(--color-text-muted)">你在 Figma 或 Canva 上做了一个网页设计稿，想转成真正的网页代码。</p>
+          <div class="code-block" data-lang="你可以这样说">
+<code><span class="cm"># 安装了 Playwright MCP 后</span>
+帮我打开这个 Figma 链接，查看设计稿，
+然后按照设计稿的布局和颜色写出
+HTML + CSS 代码。</code>
+          </div>
         </div>
       </div>
       <div class="step-item">
-        <div class="step-number">🏋️</div>
+        <div class="step-number">📊</div>
         <div class="step-content">
-          <h4>场景四：在 IDE 内刷算法题</h4>
-          <p>配置 LeetCode MCP 服务后，可以对 AI 说："随机给我一道中等难度的数组题"。AI 调用 MCP 获取题目，你在 IDE 里写代码，AI 辅助调试。</p>
+          <h4>场景四：分析数据库中的数据</h4>
+          <p style="color:var(--color-text-muted)">有一个 SQLite 数据库文件，想查询里面的数据但不太会写 SQL。</p>
+          <div class="code-block" data-lang="你可以这样说">
+<code><span class="cm"># 安装了 SQLite MCP 后</span>
+帮我查看 news.db 数据库里有哪些表，
+然后查出 2025 年发布的所有新闻，
+按发布日期排序。</code>
+          </div>
+          <p style="color:var(--color-text-muted);font-size:0.9rem;margin-top:0.5rem"><strong>效果</strong>：AI 会自动连接数据库，列出所有表的结构，编写并执行 SQL 查询语句，返回结果。</p>
         </div>
       </div>
-    </div>
-
-    <div class="info-box warning" style="margin-top:2rem">
-      <span class="info-box-icon">⚠️</span>
-      <p><strong>注意</strong>：部分 MCP 服务需要配置 API Key 或其他凭证。首次使用时请仔细阅读服务提供方的说明文档。智能体在调用 MCP 工具前会先征求你的确认。</p>
     </div>
   </div>
 </section>
 
-<!-- ===== Footer ===== -->
+<!-- ===== 常见问题 ===== -->
+<section class="section" id="faq">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">常见问题</h2>
+    <p class="section-subtitle">关于 MCP 服务，初学者最常问的几个问题。</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">❓</div>
+        <div class="step-content">
+          <h4>MCP 是免费的吗？</h4>
+          <p style="color:var(--color-text-muted)">灵码自带的 MCP 广场中的工具大部分是<strong>免费开源</strong>的。但部分工具可能需要额外的 API Key（如 Google Search 需要配置搜索 API）。课堂上老师会指导你完成配置。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">❓</div>
+        <div class="step-content">
+          <h4>不安装 MCP 影响使用吗？</h4>
+          <p style="color:var(--color-text-muted)"><strong>完全不影响</strong>。MCP 是锦上添花的高级功能。没有 MCP，AI 依然可以帮你写代码、解释代码、回答问题。只是无法访问外部资源（如搜索网页、查数据库）。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">❓</div>
+        <div class="step-content">
+          <h4>安装了 MCP 但 AI 没有使用？</h4>
+          <p style="color:var(--color-text-muted)">AI 会自己判断是否需要调用 MCP 工具。如果你想让 AI 主动使用，可以在对话中<strong>明确提示</strong>，例如"请使用搜索工具查一下"或"帮我用 Fetch 读取这个网页"。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">❓</div>
+        <div class="step-content">
+          <h4>MCP 工具是否安全？</h4>
+          <p style="color:var(--color-text-muted)">MCP 广场中的工具经过审核，应当安全。使用 STDIO 模式的工具数据不出本机。使用 SSE 模式的工具数据会通过网络传输，注意不要输入个人敏感信息。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
-  <p><a href="index.html">← 返回 Lingma IDE 入门指南</a> | <a href="skills.html">技能/智能体/指令详解 →</a></p>
+  <p><a href="index.html">← 返回 Lingma IDE 入门指南</a> | <a href="skills.html">技能/智能体 →</a> | <a href="quest.html">Quest 模式 →</a> | <a href="rules.html">规则与记忆 →</a></p>
   <p style="margin-top:0.5rem;opacity:0.6">© 2026 基础编程课程组</p>
 </footer>
 
-<!-- ===== Scripts ===== -->
 <script>
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 50); });
@@ -305,7 +314,7 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 fadeEls.forEach(el => observer.observe(el));
 const particleContainer = document.getElementById('particles');
-const codeSnippets = ['MCP', 'STDIO', 'SSE', 'fetch()', 'Tool', 'Agent', 'Context', 'Protocol', 'API', 'JSON', 'connect', 'invoke'];
+const codeSnippets = ['MCP', 'Fetch', 'Search', 'STDIO', 'SSE', 'Plugin', 'API', 'Tool', 'Notion', 'SQLite', 'GitHub'];
 for (let i = 0; i < 15; i++) {
   const p = document.createElement('span');
   p.className = 'particle';
@@ -325,6 +334,5 @@ window.addEventListener('scroll', () => {
   });
 });
 </script>
-
 </body>
 </html>

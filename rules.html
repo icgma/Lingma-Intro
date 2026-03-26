@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>规则与记忆详解 — Lingma IDE 指南</title>
-  <meta name="description" content="详细介绍 Lingma IDE 中的编码规则配置、AI 记忆系统和模型选择功能。">
+  <meta name="description" content="详细介绍 Lingma IDE 中的编码规则配置、AI 记忆系统和模型选择功能，面向零基础文科学生。">
   <link rel="stylesheet" href="index.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>📏</text></svg>">
 </head>
@@ -21,8 +21,9 @@
       <li><a href="index.html">← 返回首页</a></li>
       <li><a href="#rules">规则系统</a></li>
       <li><a href="#rule-types">规则类型</a></li>
-      <li><a href="#memory">记忆系统</a></li>
-      <li><a href="#models">模型选择</a></li>
+      <li><a href="#rule-example">实例</a></li>
+      <li><a href="#memory">记忆</a></li>
+      <li><a href="#models">模型</a></li>
     </ul>
   </div>
 </nav>
@@ -32,7 +33,7 @@
   <div class="hero-content">
     <div class="hero-badge"><span class="dot"></span>基础功能</div>
     <h1>规则 / 记忆 / <span class="gradient-text">模型</span></h1>
-    <p class="tagline">定义 AI 的行为规范，让它记住你的偏好，选择最适合的大模型。</p>
+    <p class="tagline">让 AI 按照你的"规矩"来——定义编码规范、积累使用习惯、选择最聪明的模型。</p>
     <div class="hero-actions">
       <a href="#rules" class="btn btn-primary">📖 开始阅读</a>
       <a href="index.html#settings" class="btn btn-outline">← 返回设置</a>
@@ -44,58 +45,47 @@
 <section class="section" id="rules">
   <div class="section-inner fade-in">
     <h2 class="section-title">规则系统（Rules）</h2>
-    <p class="section-subtitle">通过设定规则，让 AI 更精准地理解你的编码偏好、项目规范和代码风格，有效提升代码一致性。</p>
+    <p class="section-subtitle">规则就是给 AI 定"规矩"——告诉它写代码时必须遵守哪些规范。</p>
 
     <div class="two-col" style="margin-top:2rem">
       <div>
         <h4 style="margin-bottom:1rem">🤔 为什么需要规则？</h4>
-        <p style="color:var(--color-text-muted)">大模型生成代码时，可能会按照自己的"习惯"写代码。例如有时用驼峰命名，有时用下划线命名。通过设定规则，可以统一 AI 的行为。</p>
+        <p style="color:var(--color-text-muted)">想象一下：你让 AI 帮你写 Python 作业，但 AI 有时候写英文注释、有时候写中文注释，变量名有时用缩写（<code>cnt</code>）、有时用全称（<code>count</code>）。这就像让不同的人帮你写同一份文档——风格不统一。</p>
+        <p style="color:var(--color-text-muted);margin-top:1rem">通过设定规则，你可以统一 AI 的行为：<strong>"所有注释必须用中文""变量名必须有意义""不准用 eval 之类的危险函数"</strong>。</p>
         <div class="info-box tip" style="margin-top:1rem">
           <span class="info-box-icon">💡</span>
-          <p>规则还能有效"对抗模型幻觉"——当你明确告诉 AI "不要使用某个库"时，它就不会生成包含该库的代码。</p>
+          <p><strong>通俗比喻</strong>：规则就像给实习生一份"代码风格手册"——有了它，AI 写出来的代码风格才统一。</p>
         </div>
       </div>
       <div>
-        <h4 style="margin-bottom:1rem">📁 规则的存放位置</h4>
-        <p style="color:var(--color-text-muted)">项目专属规则存放在项目根目录的 <code>.lingma/rules/</code> 文件夹中，仅对当前工程生效。</p>
+        <h4 style="margin-bottom:1rem">📁 规则存在哪里？</h4>
+        <p style="color:var(--color-text-muted)">规则可以在两个地方设定：</p>
+        <div class="step-list" style="margin-top:1rem;gap:1rem">
+          <div class="step-item">
+            <div class="step-number" style="font-size:0.8rem;width:36px;height:36px">1</div>
+            <div class="step-content" style="padding-top:4px">
+              <h4 style="font-size:1rem">设置面板</h4>
+              <p style="font-size:0.85rem">在灵码设置的"规则"页面直接输入文字。适合个人偏好。</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-number" style="font-size:0.8rem;width:36px;height:36px">2</div>
+            <div class="step-content" style="padding-top:4px">
+              <h4 style="font-size:1rem">项目文件夹</h4>
+              <p style="font-size:0.85rem">在项目根目录创建 <code>.lingma/rules/</code> 文件夹，放入 Markdown 文件。适合团队共享。</p>
+            </div>
+          </div>
+        </div>
         <div class="code-block" data-lang="项目规则目录结构" style="margin-top:1rem">
-<code>your-project/
-├── .lingma/
-│   └── rules/
-│       ├── <span class="fn">coding_style.md</span>
-│       ├── <span class="fn">naming_convention.md</span>
-│       └── <span class="fn">forbidden_libraries.md</span>
-├── src/
+<code>your-project/        <span class="cm"># 你的项目文件夹</span>
+├── .lingma/          <span class="cm"># 灵码配置（以 . 开头会隐藏）</span>
+│   └── rules/        <span class="cm"># 规则目录</span>
+│       ├── <span class="fn">style.md</span>  <span class="cm"># 编码风格规则</span>
+│       └── <span class="fn">naming.md</span> <span class="cm"># 命名规范规则</span>
+├── main.py           <span class="cm"># 你的代码文件</span>
 └── ...</code>
         </div>
       </div>
-    </div>
-
-    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">✏️ 编写规则示例</h3>
-    <div class="code-block" data-lang="coding_style.md">
-<code><span class="cm"># Python 编码风格规范</span>
-
-<span class="kw">## 命名约定</span>
-- 变量名和函数名使用 snake_case
-- 类名使用 PascalCase
-- 常量使用 UPPER_SNAKE_CASE
-- 避免使用单字母变量名（循环变量 i, j 除外）
-
-<span class="kw">## 代码风格</span>
-- 遵循 PEP 8 规范
-- 缩进使用 4 个空格
-- 每行不超过 79 个字符
-- 字符串格式化优先使用 f-string
-
-<span class="kw">## 注释</span>
-- 注释使用中文
-- 每个函数必须包含 docstring
-- 复杂逻辑前添加行内注释
-
-<span class="kw">## 禁止事项</span>
-- 不要使用 global 变量
-- 不要使用 eval() 或 exec()
-- 不要使用裸露的 except（必须指定异常类型）</code>
     </div>
   </div>
 </section>
@@ -103,119 +93,244 @@
 <!-- ===== 四种规则类型 ===== -->
 <section class="section section-alt" id="rule-types">
   <div class="section-inner fade-in">
-    <h2 class="section-title">四种规则生效模式</h2>
-    <p class="section-subtitle">不同的规则可以设定不同的生效方式，灵活控制应用范围。</p>
+    <h2 class="section-title">四种规则类型</h2>
+    <p class="section-subtitle">不同的规则可以设定不同的"生效范围"——有些一直生效，有些只在特定情况下生效。</p>
 
     <div class="step-list">
       <div class="step-item">
         <div class="step-number">📌</div>
         <div class="step-content">
-          <h4>始终生效（Always）</h4>
-          <p>在所有智能会话和行内对话中均生效。适用于项目级的通用规范，如编码风格、偏好格式和默认角色设定。</p>
-          <div class="info-box note" style="margin-top:0.5rem">
-            <span class="info-box-icon">📝</span>
-            <p>推荐初学者使用此模式，确保 AI 始终遵循你的编码规范。</p>
-          </div>
+          <h4>① 始终生效（Always）<span style="color:var(--color-success);font-size:0.8rem;margin-left:0.5rem">← 推荐初学者</span></h4>
+          <p>这条规则在<strong>所有对话中都会生效</strong>。适合设定通用编码规范，比如"注释用中文""遵循 PEP 8"。</p>
+          <p style="color:var(--color-text-muted);font-size:0.9rem;margin-top:0.5rem"><strong>比喻</strong>：就像办公室的"全体员工须知"——贴在墙上，人人都要遵守。</p>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">🤖</div>
         <div class="step-content">
-          <h4>模型决策（Model Decision）</h4>
-          <p>AI 根据当前对话内容和规则描述，自主判断是否应用。适用于非通用但重要的规则。</p>
+          <h4>② 模型决策（Model Decision）</h4>
+          <p>AI 会根据当前对话内容，<strong>自己判断</strong>是否需要应用这条规则。适合非通用但重要的规则。</p>
+          <p style="color:var(--color-text-muted);font-size:0.9rem;margin-top:0.5rem"><strong>比喻</strong>：就像公司里的"出差管理办法"——不出差的同事不需要看，要出差了才翻出来看。</p>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">✋</div>
         <div class="step-content">
-          <h4>手动引入（Manual）</h4>
-          <p>在对话中使用 <code>#rule</code> 手动引入特定规则。适用于一次性工作流或特殊场景的自定义提示词。</p>
+          <h4>③ 手动引入（Manual）</h4>
+          <p>你在对话中输入 <code>#规则名</code> 来<strong>手动激活</strong>某条规则。适合一次性的特殊需求。</p>
+          <p style="color:var(--color-text-muted);font-size:0.9rem;margin-top:0.5rem"><strong>比喻</strong>：就像图书馆的参考书——需要时主动去架上拿，不会自动出现在你桌上。</p>
           <div class="code-block" data-lang="使用示例" style="margin-top:0.5rem">
 <code><span class="cm"># 在对话框中输入：</span>
-#coding_style 请帮我重构这个函数</code>
+#report_format 帮我写一份数据分析报告
+
+<span class="cm"># AI 会同时参考你的代码和 report_format 规则</span></code>
           </div>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">📁</div>
         <div class="step-content">
-          <h4>指定文件生效（Specific Files）</h4>
-          <p>根据文件匹配模式生效。例如只在 <code>*.py</code> 文件中应用 Python 规范，只在 <code>src/**/*.ts</code> 中应用 TypeScript 规范。</p>
+          <h4>④ 指定文件生效（Specific Files）</h4>
+          <p>只在你编辑<strong>特定类型的文件</strong>时生效。例如只在 <code>*.py</code> 文件中应用 Python 规范，只在 <code>*.html</code> 文件中应用网页规范。</p>
+          <p style="color:var(--color-text-muted);font-size:0.9rem;margin-top:0.5rem"><strong>比喻</strong>：就像"厨房规章制度"——只在厨房里有效，到了客厅就不管了。</p>
         </div>
       </div>
     </div>
 
     <div class="info-box warning" style="margin-top:2rem">
       <span class="info-box-icon">⚠️</span>
-      <p><strong>注意</strong>：单个规则文件最大限制为 <strong>10000 字符</strong>，超出部分会被自动截断。规则仅支持自然语言描述，不支持图片或链接解析。</p>
+      <p><strong>限制</strong>：单个规则文件最大 <strong>10000 字符</strong>（约 5000 个中文字），超出部分会被截断。规则只支持文字描述，不支持插入图片。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 规则编写实例 ===== -->
+<section class="section" id="rule-example">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">规则编写实例</h2>
+    <p class="section-subtitle">以下是一个适合本课程的完整规则示例，你可以直接复制使用。</p>
+
+    <div class="code-block" data-lang="推荐规则：基础编程课程规范.md">
+<code><span class="cm"># 基础编程课程 — Python 编码规范</span>
+
+<span class="kw">## 语言要求</span>
+- 所有注释必须使用<span class="str">中文</span>
+- 变量名和函数名使用<span class="str">英文</span>，且必须有意义
+- print 输出的内容使用<span class="str">中文</span>
+
+<span class="kw">## 命名规范</span>
+- 变量名使用 <span class="fn">snake_case</span>（小写+下划线），例如 student_name
+- 函数名使用 <span class="fn">snake_case</span>，例如 calculate_average
+- 常量使用 <span class="fn">UPPER_CASE</span>，例如 MAX_RETRY = 3
+- 禁止使用单个字母作为变量名（i, j 用于循环时除外）
+- 禁止使用拼音作为变量名
+
+<span class="kw">## 代码风格</span>
+- 遵循 PEP 8 规范
+- 缩进统一使用 4 个空格
+- 字符串格式化优先使用 f-string
+- 每个函数必须有 docstring（文档字符串），用中文描述功能
+
+<span class="kw">## 禁止事项</span>
+- 不使用 global 全局变量
+- 不使用 eval() 或 exec()
+- except 后面必须指定具体异常类型（禁止裸 except）
+- 不使用 from xxx import *
+
+<span class="kw">## 代码结构</span>
+- 主程序入口使用 if __name__ == "__main__":
+- 单个函数不超过 30 行
+- 文件开头添加简要说明注释</code>
+    </div>
+
+    <div class="info-box tip" style="margin-top:1.5rem">
+      <span class="info-box-icon">💡</span>
+      <p><strong>使用方法</strong>：将上面的内容保存为 <code>.lingma/rules/coding_style.md</code> 文件，放在你的项目根目录即可。设定生效模式为"始终生效"。</p>
+    </div>
+
+    <h3 style="margin:2.5rem 0 1rem;color:var(--color-text-bright)">📋 设定规则前后的对比</h3>
+    <div class="features-grid" style="grid-template-columns:1fr 1fr">
+      <div class="feature-card" style="border-color:var(--color-danger)">
+        <div class="feature-icon">❌</div>
+        <h3>未设规则时 AI 可能写出</h3>
+        <div class="code-block" data-lang="Python" style="margin-top:0.5rem">
+<code><span class="cm"># no rules applied</span>
+def f(x):
+    a = x * 2
+    return a</code>
+        </div>
+        <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:0.5rem">问题：函数名无意义、变量名缩写、无注释、无 docstring</p>
+      </div>
+      <div class="feature-card" style="border-color:var(--color-success)">
+        <div class="feature-icon">✅</div>
+        <h3>设定规则后 AI 写出</h3>
+        <div class="code-block" data-lang="Python" style="margin-top:0.5rem">
+<code>def calculate_double(number):
+    <span class="str">"""计算给定数字的两倍值。"""</span>
+    <span class="cm"># 将输入数字乘以 2</span>
+    result = number * <span class="num">2</span>
+    <span class="kw">return</span> result</code>
+        </div>
+        <p style="font-size:0.85rem;color:var(--color-text-muted);margin-top:0.5rem">改进：函数名清晰、变量有意义、中文注释、有 docstring</p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ===== 记忆系统 ===== -->
-<section class="section" id="memory">
+<section class="section section-alt" id="memory">
   <div class="section-inner fade-in">
     <h2 class="section-title">记忆系统（Memory）</h2>
-    <p class="section-subtitle">AI 助手会自动学习你的编码习惯和偏好，越用越懂你。</p>
+    <p class="section-subtitle">AI 会自动学习你的编码习惯——你用得越多，它越懂你。</p>
+
+    <div class="ai-showcase" style="margin-bottom:2rem">
+      <div class="ai-tag">🧠 通俗理解</div>
+      <h3 style="margin:0.5rem 0 1rem">什么是 AI 记忆？</h3>
+      <p style="color:var(--color-text-muted)">想象你有一个新助手。第一天你告诉他"我喜欢用蓝色的笔"，第二天告诉他"报告用宋体"。慢慢地，他就记住了你的所有偏好，不用你每次重复说明。灵码的记忆系统就是这个原理——<strong>AI 会自动学习并记住你的编码习惯</strong>。</p>
+    </div>
 
     <div class="features-grid" style="margin-top:2rem">
       <div class="feature-card">
         <div class="feature-icon">🤖</div>
         <h3>自动记忆</h3>
-        <p>AI 在对话中自动识别并记忆你的偏好。例如当你多次要求使用中文注释时，AI 会记住这个偏好。</p>
+        <p>你不需要做任何设置！AI 在对话中会自动识别你的偏好。比如你连续几次要求"注释用中文"，AI 就会记住这个习惯。</p>
+        <div class="info-box note" style="margin-top:0.5rem">
+          <span class="info-box-icon">📝</span>
+          <p style="font-size:0.85rem">AI 可能会记住：你偏好的编程风格、常用的库、项目的技术框架、你的代码组织习惯等。</p>
+        </div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">✍️</div>
-        <h3>主动记忆</h3>
-        <p>在智能体模式下，可以直接告诉 AI 需要记住的内容，例如："记住我的项目使用 Poetry 管理依赖"。</p>
+        <h3>主动告知</h3>
+        <p>你也可以直接告诉 AI 需要记住什么。在对话中输入：</p>
+        <div class="code-block" data-lang="示例" style="margin-top:0.5rem">
+<code><span class="cm"># 你可以这样说：</span>
+请记住：我的项目使用 pandas 和
+matplotlib 做数据分析。
+
+请记住：我是初学者，解释代码时
+请用最简单易懂的中文。</code>
+        </div>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🗑️</div>
         <h3>查看与管理</h3>
-        <p>在设置面板的"记忆"页面，可以查看所有已学习的记忆，编辑不准确的内容，或删除不需要的记忆。</p>
+        <p>在设置面板的"记忆"页面，可以看到 AI 已经学到了什么。如果有记错的，可以编辑或删除。</p>
+        <p style="color:var(--color-text-muted);font-size:0.85rem;margin-top:0.5rem"><strong>路径</strong>：点击右上角头像 → 个人设置 → 记忆管理</p>
       </div>
     </div>
 
-    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">🌐 记忆的作用范围</h3>
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">🌐 记忆作用范围</h3>
     <div class="features-grid" style="grid-template-columns:1fr 1fr">
       <div class="ai-showcase" style="padding:1.5rem">
-        <div class="ai-tag">👤 个人习惯</div>
-        <h4 style="margin:0.5rem 0">全局生效</h4>
-        <p style="color:var(--color-text-muted);font-size:0.9rem">与你个人编码习惯相关的记忆（如偏好的注释语言、命名风格），在所有项目中生效。</p>
+        <div class="ai-tag">👤 个人习惯记忆</div>
+        <h4 style="margin:0.5rem 0">全局生效（所有项目）</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">与你个人偏好相关的记忆，在所有项目中都有效。</p>
+        <p style="color:var(--color-text-dim);font-size:0.85rem;margin-top:0.5rem">例如：你喜欢中文注释、偏好 f-string 格式化</p>
       </div>
       <div class="ai-showcase" style="padding:1.5rem">
-        <div class="ai-tag">📂 项目相关</div>
-        <h4 style="margin:0.5rem 0">工程级生效</h4>
-        <p style="color:var(--color-text-muted);font-size:0.9rem">与特定项目相关的记忆（如"本项目使用 Flask 框架"），仅在打开该项目时生效。</p>
+        <div class="ai-tag">📂 项目记忆</div>
+        <h4 style="margin:0.5rem 0">工程级生效（仅当前项目）</h4>
+        <p style="color:var(--color-text-muted);font-size:0.9rem">与特定项目相关的记忆，只在打开该项目时有效。</p>
+        <p style="color:var(--color-text-dim);font-size:0.85rem;margin-top:0.5rem">例如：这个项目用 Flask、数据文件在 data/ 目录</p>
       </div>
     </div>
 
     <div class="info-box tip" style="margin-top:2rem">
       <span class="info-box-icon">💡</span>
-      <p><strong>规则 vs 记忆</strong>：两者都能影响 AI 行为，但规则是你<strong>主动定义</strong>的硬性约束，记忆是 AI <strong>自动学习</strong>的软性偏好。<strong>当两者冲突时，规则优先</strong>。</p>
+      <p><strong>规则 vs 记忆——什么区别？</strong><br>
+      <strong>规则</strong> = 你主动定义的硬性约束（"必须用中文注释"），写在文件里，永远不变。<br>
+      <strong>记忆</strong> = AI 自动学到的软性偏好（"这个人好像喜欢中文注释"），可能不太准确。<br>
+      <strong>冲突时规则优先</strong>——如果规则说"用英文注释"，即使 AI 记住了你喜欢中文，也会听规则的。</p>
     </div>
   </div>
 </section>
 
 <!-- ===== 模型选择 ===== -->
-<section class="section section-alt" id="models">
+<section class="section" id="models">
   <div class="section-inner fade-in">
     <h2 class="section-title">模型选择</h2>
-    <p class="section-subtitle">根据任务场景选择最合适的 AI 大模型。在设置面板的"模型"页面或对话框中切换。</p>
+    <p class="section-subtitle">灵码背后有多个 AI 大模型可选，就像手机有不同型号——各有特长。初学者用默认的就好。</p>
+
+    <div class="ai-showcase" style="margin-bottom:2rem">
+      <div class="ai-tag">🧠 通俗理解</div>
+      <h3 style="margin:0.5rem 0 1rem">什么是"模型"？</h3>
+      <p style="color:var(--color-text-muted)">你可以把"模型"想象成 AI 的"大脑"。不同的大脑擅长不同的事情：有的速度快但回答简短，有的速度慢但思考深入。就像问一个普通员工和问一个资深顾问——答案质量不同，等待时间也不同。</p>
+    </div>
 
     <table class="shortcuts-table" style="margin-top:2rem">
-      <thead><tr><th>模型</th><th>特点</th><th>适用场景</th></tr></thead>
+      <thead><tr><th>模型名称</th><th>速度</th><th>特点</th><th>适合场景</th></tr></thead>
       <tbody>
-        <tr><td><strong>Qwen3</strong>（默认）</td><td>均衡的速度和质量</td><td>日常编码、问答对话</td></tr>
-        <tr><td><strong>Qwen3-Coder</strong></td><td>代码专精，工具调用能力强</td><td>Quest 模式、复杂编码任务</td></tr>
-        <tr><td><strong>DeepSeek-V3</strong></td><td>深度推理和长文本处理</td><td>代码审查、架构设计</td></tr>
-        <tr><td><strong>DeepSeek-R1</strong></td><td>满血版 671B，推理最强</td><td>复杂数学/算法问题</td></tr>
+        <tr>
+          <td><strong>Qwen3</strong> <span style="color:var(--color-success);font-size:0.75rem">默认</span></td>
+          <td>⚡⚡⚡ 快</td>
+          <td>速度和质量均衡</td>
+          <td>日常编码、问答对话——初学者就用它</td>
+        </tr>
+        <tr>
+          <td><strong>Qwen3-Coder</strong></td>
+          <td>⚡⚡ 中等</td>
+          <td>代码专精，工具调用强</td>
+          <td>Quest 模式做项目时推荐切换到它</td>
+        </tr>
+        <tr>
+          <td><strong>DeepSeek-V3</strong></td>
+          <td>⚡ 较慢</td>
+          <td>深度推理，擅长长文本</td>
+          <td>让 AI 审查代码、设计项目架构</td>
+        </tr>
+        <tr>
+          <td><strong>DeepSeek-R1</strong></td>
+          <td>🐌 最慢</td>
+          <td>推理最强的满血版</td>
+          <td>复杂数学/算法问题——日常用不太到</td>
+        </tr>
       </tbody>
     </table>
 
     <div class="info-box tip" style="margin-top:2rem">
       <span class="info-box-icon">💡</span>
-      <p><strong>初学者建议</strong>：保持默认的 Qwen3 模型即可满足大部分需求。当遇到特别复杂的编程问题时，可以尝试切换到 Qwen3-Coder 或 DeepSeek-R1。</p>
+      <p><strong>初学者建议</strong>：保持默认的 <strong>Qwen3</strong> 即可满足 99% 的课程需求。当你觉得 AI 的回答不够好时，试试切换到 <strong>Qwen3-Coder</strong>。两者之间的切换方法：在对话框底部点击模型名称即可。</p>
     </div>
 
     <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">🔄 如何切换模型</h3>
@@ -223,15 +338,15 @@
       <div class="step-item">
         <div class="step-number">1</div>
         <div class="step-content">
-          <h4>方式一：对话框切换</h4>
-          <p>在 AI 对话框的输入区域底部，点击模型名称即可切换到其他可用模型。</p>
+          <h4>方式一：对话框快速切换</h4>
+          <p>在 AI 对话框的输入区域底部，你会看到当前使用的模型名称（如 "Qwen3"）。<strong>点击它</strong>，会弹出模型列表，选择你想要的即可。切换后立即生效。</p>
         </div>
       </div>
       <div class="step-item">
         <div class="step-number">2</div>
         <div class="step-content">
           <h4>方式二：设置面板</h4>
-          <p>打开设置 → 模型页面，可以查看所有可用模型并设置默认模型。</p>
+          <p>打开灵码设置 → 点击左侧的<strong>"模型"</strong> → 在这里可以看到所有可用模型，并设置默认模型。</p>
         </div>
       </div>
     </div>
@@ -239,7 +354,7 @@
 </section>
 
 <footer class="footer">
-  <p><a href="index.html">← 返回 Lingma IDE 入门指南</a> | <a href="quest.html">Quest 模式 →</a> | <a href="skills.html">技能/智能体 →</a></p>
+  <p><a href="index.html">← 返回 Lingma IDE 入门指南</a> | <a href="quest.html">Quest 模式 →</a> | <a href="skills.html">技能/智能体 →</a> | <a href="mcp.html">MCP 服务 →</a></p>
   <p style="margin-top:0.5rem;opacity:0.6">© 2026 基础编程课程组</p>
 </footer>
 
