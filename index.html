@@ -23,6 +23,7 @@
       <li><a href="#install">安装</a></li>
       <li><a href="#interface">界面</a></li>
       <li><a href="#sidebar">侧边栏</a></li>
+      <li><a href="#settings">设置</a></li>
       <li><a href="#coding">编程</a></li>
       <li><a href="#ai">AI编码</a></li>
       <li><a href="#shortcuts">快捷键</a></li>
@@ -483,6 +484,118 @@ pip install pandas</code>
     <div class="info-box tip" style="margin-top:2rem">
       <span class="info-box-icon">💡</span>
       <p>初学者最常用的是 <strong>TERMINAL</strong> 和 <strong>PROBLEMS</strong> 两个标签页。TERMINAL 用于运行代码，PROBLEMS 帮你快速定位错误。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Lingma 设置 ===== -->
+<section class="section" id="settings">
+  <div class="section-inner fade-in">
+    <h2 class="section-title">Lingma 设置</h2>
+    <p class="section-subtitle">通过设置面板可以自定义灵码 AI 助手的行为。点击左下角齿轮图标，或通过命令面板搜索 <code>Lingma: Settings</code> 打开。</p>
+
+    <div class="illustration-panel">
+      <img src="images/settings_panel.png" alt="Lingma IDE 设置面板" loading="lazy">
+      <figcaption>Lingma 设置面板：左侧为分类导航，右侧为对应设置项</figcaption>
+    </div>
+
+    <!-- 基础功能 -->
+    <h3 style="margin:2.5rem 0 1.5rem;color:var(--color-text-bright)">📌 基础功能</h3>
+    <p style="color:var(--color-text-muted);margin-bottom:1.5rem">日常使用中最常用的设置项，建议初学者优先了解。</p>
+
+    <div class="step-list">
+      <div class="step-item">
+        <div class="step-number">⚙️</div>
+        <div class="step-content">
+          <h4>通用</h4>
+          <p>最基本的设置页。包括：</p>
+          <ul style="color:var(--color-text-muted);font-size:0.9rem;margin-top:0.5rem;padding-left:1.2rem">
+            <li><strong>订阅计划</strong>：查看当前版本（个人版免费），配置专属域链接</li>
+            <li><strong>语言</strong>：设置界面显示语言和 AI 回复语言，均支持简体中文</li>
+            <li><strong>通知</strong>：控制会话和 Quest 模式的系统通知开关</li>
+            <li><strong>偏好</strong>：自定义 AI 行为偏好，如是否自动接受补全等</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">🧠</div>
+        <div class="step-content">
+          <h4>模型</h4>
+          <p>选择 AI 使用的大模型。可切换不同的通义千问模型（如 Qwen3 系列），不同模型在速度和准确度上有差异。初学者保持默认即可。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">💬</div>
+        <div class="step-content">
+          <h4>会话</h4>
+          <p>配置 AI 对话的行为。包括会话历史管理、是否自动包含上下文代码、回复风格等。影响 AI 助手的对话体验。</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">📏</div>
+        <div class="step-content">
+          <h4>规则</h4>
+          <p>定义 AI 生成代码时应遵循的规则。例如编码风格规范、命名约定、禁用某些库等。可以通过 Markdown 文件或直接输入文本定义规则。</p>
+          <div class="info-box tip">
+            <span class="info-box-icon">💡</span>
+            <p>例如可以设置规则：“所有变量名使用英文，注释使用中文，代码风格遵循 PEP 8”。</p>
+          </div>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">💾</div>
+        <div class="step-content">
+          <h4>记忆</h4>
+          <p>AI 助手会记住你的偏好和工作习惯，并在后续对话中自动应用。在这里可以查看、编辑或清除 AI 已经学习到的记忆内容。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 高级功能 -->
+    <h3 style="margin:3rem 0 1.5rem;color:var(--color-text-bright)">🚀 高级功能</h3>
+    <p style="color:var(--color-text-muted);margin-bottom:1.5rem">适合有一定编程经验后进一步探索，初学者可暂时跳过。</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">✨</div>
+        <h3>NEXT</h3>
+        <p>启用实验性的前沿功能。这些功能可能还不稳定，但可以提前体验最新的 AI 编程能力。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Quest 模式</h3>
+        <p>自主编程模式。AI 根据你的任务描述自动规划步骤、编辑代码、运行命令，端到端完成开发任务。可配置自动执行级别。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔌</div>
+        <h3>MCP 服务</h3>
+        <p>Model Context Protocol 服务配置。可连接外部工具和数据源，扩展 AI 的能力边界，集成魔搭 MCP 广场生态。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧩</div>
+        <h3>技能、智能体、指令</h3>
+        <p>添加自定义技能和开发指令。可为 AI 助手扩展专属能力，如代码风格检查、API 参考生成等。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗂️</div>
+        <h3>代码库索引</h3>
+        <p>配置项目代码的索引范围。索引后 AI 能更准确地理解项目结构，提供更相关的代码建议。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <h3>集成</h3>
+        <p>第三方服务集成设置，如代码仓库、CI/CD 工具等的连接配置。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌐</div>
+        <h3>网络诊断</h3>
+        <p>AI 服务连接不上时用于排查网络问题。可测试与服务器的连接状态和延迟。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔧</div>
+        <h3>高级</h3>
+        <p>包括日志级别、缓存清理、调试模式等开发者选项。一般无需修改。</p>
+      </div>
     </div>
   </div>
 </section>
